@@ -1,39 +1,42 @@
-# MusicHome
+# 优秀实践-一次开发，多端部署-音乐专辑
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+### 简介
 
-#### 软件架构
-软件架构说明
+基于自适应和响应式布局，实现一次开发、多端部署音乐专辑。
 
+手机效果图如下：
 
-#### 安装教程
+![](screenshots/device/phone.png)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+折叠屏效果图如下：
 
-#### 使用说明
+![](screenshots/device/foldable.png)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+平板效果图如下：
 
-#### 参与贡献
+![](screenshots/device/pad.png)
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+### 相关权限
 
+不涉及
 
-#### 特技
+### 使用说明
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. 分别在手机、折叠屏、平板安装并打开应用，不同设备的应用页面通过响应式布局和自适应布局呈现不同的效果。
+2. 点击界面上播放/暂停、上一首、下一首图标控制音乐播放功能。
+3. 点击界面上播放控制区空白处或列表歌曲跳转到播放页面。
+4. 点击界面上评论按钮跳转到对应的评论页面。
+5. 其他按钮无实际点击事件或功能。
+
+### 约束与限制
+
+1. 本示例仅支持标准系统上运行，支持设备：华为手机。
+2. HarmonyOS系统：HarmonyOS NEXT Developer Beta1及以上。
+3. DevEco Studio版本：DevEco Studio NEXT Developer Beta1及以上。
+4. HarmonyOS SDK版本：HarmonyOS NEXT Developer Beta1 SDK及以上。
+
+### 注意
+
+运行时需设置引用所有HSP模块。点击Run > Edit Configurations，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages， 选择使用方模块（phone）和所有HSP模块，点击OK。单击Run > Run “模块名称”（如Run “phone”）或![](screenshots/device/run.PNG)来启动应用/服务的编译构建。
+
+![](screenshots/device/config.png)
