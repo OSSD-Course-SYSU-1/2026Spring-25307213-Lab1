@@ -13,5 +13,6 @@
  * limitations under the License.
  */
 
-export { Header } from './view/Header';
-export { LiveList } from './view/LiveList';
+export { Header } from './src/main/ets/view/Header';
+export { LiveList } from './src/main/ets/view/LiveList';
+export { LivePage } from './src/main/ets/view/LivePage';

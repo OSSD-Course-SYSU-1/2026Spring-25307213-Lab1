@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
 import { StyleConstants } from '@ohos/constantsCommon';
 
 @Component
 export struct HeadComponent {
+  @StorageLink('pageIndexInfos') pageIndexInfos: NavPathStack = new NavPathStack();
+
   build() {
     Row() {
       Image($r('app.media.ic_public_back'))
@@ -36,7 +37,7 @@ export struct HeadComponent {
     .width(StyleConstants.FULL_WIDTH)
     .height($r('app.float.header_height'))
     .onClick(() => {
-      router.back();
+      this.pageIndexInfos.pop();
     })
   }
 }

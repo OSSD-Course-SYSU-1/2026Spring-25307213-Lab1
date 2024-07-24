@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import { RouterUrlConstants } from '@ohos/constantsCommon';
 import IndexItem from './IndexItem';
 
 /**
@@ -27,11 +28,9 @@ class IndexViewModel {
   getIndexItemList(): IndexItem[] {
     let IndexItemList: IndexItem[] = [];
     IndexItemList.push(new IndexItem($r('app.string.music_title'), $r('app.string.music_description'),
-      $r('app.string.button_music'), $r('app.media.ic_music'),
-      '@bundle:com.huawei.music.musichome/musicList/ets/pages/Index'));
+      $r('app.string.button_music'), $r('app.media.ic_music'), RouterUrlConstants.MUSIC_LIST));
     IndexItemList.push(new IndexItem($r('app.string.live_title'), $r('app.string.live_description'),
-      $r('app.string.button_live'), $r('app.media.ic_live'),
-      '@bundle:com.huawei.music.musichome/live/ets/pages/Index'));
+      $r('app.string.button_live'), $r('app.media.ic_live'), RouterUrlConstants.LIVE));
     return IndexItemList;
   }
 }

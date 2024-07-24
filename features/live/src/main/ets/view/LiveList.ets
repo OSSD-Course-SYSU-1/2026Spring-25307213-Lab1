@@ -21,7 +21,7 @@ import { LiveStreamViewModel } from '../viewmodel/LiveStreamViewModel';
 export struct LiveList {
   private scroller: Scroller = new Scroller();
   @State liveStreams: LiveStream[] = new LiveStreamViewModel().getLiveStreamList();
-  @State currentBreakpoint: string = LiveConstants.CURRENT_BREAKPOINT;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = LiveConstants.CURRENT_BREAKPOINT;
 
   build() {
     GridRow({
@@ -50,9 +50,6 @@ export struct LiveList {
       }
       .margin({ left: $r('app.float.grid_col_left_margin'), right: $r('app.float.grid_col_right_margin') })
     }
-    .onBreakpointChange((breakPoints) => {
-      this.currentBreakpoint = breakPoints;
-    })
   }
 
   @Builder

@@ -22,6 +22,7 @@ import { ContentConstants } from '../constants/ContentConstants';
 export struct AlbumComponent {
   @State imgHeight: Length = 0;
   @Link currentBreakpoint: string;
+  @StorageLink('pageIndexInfos') pageIndexInfos: NavPathStack = new NavPathStack();
 
   @Builder
   CoverImage() {
@@ -107,7 +108,11 @@ export struct AlbumComponent {
               lg: $r('app.float.option_font_lg')
             }).getValue(this.currentBreakpoint))
         }
-        .onClick(item.action)
+        .onClick(() => {
+          if (item.action) {
+            item.action(this.pageIndexInfos);
+          }
+        })
       }, (item: OptionItem, index?: number) => index + JSON.stringify(item))
     }
     .height($r('app.float.option_area_height'))
