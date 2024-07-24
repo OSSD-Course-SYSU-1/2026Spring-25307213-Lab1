@@ -29,7 +29,7 @@ export default class SongItemBuilder {
     if (!this.context) {
       return this.songItem;
     }
-    let rawfileFd = await this.context.createModuleContext('musicList').resourceManager.getRawFd(songItem.src)
+    let rawfileFd = await this.context.resourceManager.getRawFd(songItem.src)
       .catch((error: BusinessError) => {
         Logger.error(`resourceManager error code ${error.code} message ${error.message}`);
       })

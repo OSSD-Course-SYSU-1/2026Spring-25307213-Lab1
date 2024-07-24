@@ -1,4 +1,4 @@
-# 一次开发，多端部署-音乐专辑
+# 优秀实践-一次开发，多端部署-音乐专辑
 
 ### 简介
 
@@ -34,9 +34,3 @@
 2. HarmonyOS系统：HarmonyOS NEXT Developer Beta1及以上。
 3. DevEco Studio版本：DevEco Studio NEXT Developer Beta1及以上。
 4. HarmonyOS SDK版本：HarmonyOS NEXT Developer Beta1 SDK及以上。
-
-### 注意
-
-运行时需设置引用所有HSP模块。点击Run > Edit Configurations，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages， 选择使用方模块（phone）和所有HSP模块，点击OK。单击Run > Run “模块名称”（如Run “phone”）或![](screenshots/device/run.PNG)来启动应用/服务的编译构建。
-
-![](screenshots/device/config.png)

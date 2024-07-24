@@ -14,10 +14,12 @@
     "pages": "$profile:main_pages",
     "requestPermissions": [
       {
-        "name":  "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
         "reason": "$string:reason_background",
         "usedScene": {
-          "abilities": ["EntryAbility"],
+          "abilities": [
+            "EntryAbility"
+          ],
           "when": "always"
         }
       }
@@ -47,6 +49,20 @@
             ]
           }
         ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "PhoneBackupExtAbility",
+        "srcEntry": "./ets/phonebackupextability/PhoneBackupExtAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
       }
     ]
   }

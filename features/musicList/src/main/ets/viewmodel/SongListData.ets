@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
 import { RouterUrlConstants } from '@ohos/constantsCommon';
 import { SongItem } from '@ohos/mediaCommon';
 
@@ -92,10 +91,8 @@ const songList: SongItem[] = [
 const optionList : OptionItem[] = [
   { image: $r('app.media.ic_collect'), text: $r('app.string.collect') },
   { image: $r('app.media.ic_download'), text: $r('app.string.download') },
-  { image: $r('app.media.ic_comments'), text: $r('app.string.comment'), action: () => {
-    router.pushUrl({
-      url: RouterUrlConstants.MUSIC_COMMENT
-    }, router.RouterMode.Single);
+  { image: $r('app.media.ic_comments'), text: $r('app.string.comment'), action: (pageIndexInfos: NavPathStack) => {
+    pageIndexInfos.pushPathByName(RouterUrlConstants.MUSIC_COMMENT, null);
   }},
   { image: $r('app.media.ic_share'), text: $r('app.string.share') }
 ]
@@ -103,7 +100,7 @@ const optionList : OptionItem[] = [
 class OptionItem {
   image: Resource = $r('app.media.ic_collect');
   text?: Resource;
-  action?: () => void;
+  action?: (pageIndexInfos: NavPathStack) => void;
 }
 
 export { optionList, OptionItem, songList }

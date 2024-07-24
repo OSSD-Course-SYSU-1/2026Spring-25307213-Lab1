@@ -52,9 +52,7 @@ export struct LyricsComponent {
     if (!this.context) {
       return;
     }
-    this.context.createModuleContext('musicList')
-      .resourceManager
-      .getRawFileContent(this.songList[this.selectIndex].lyric)
+    this.context .resourceManager .getRawFileContent(this.songList[this.selectIndex].lyric)
       .then((value: Uint8Array) => {
         let textDecoder = util.TextDecoder.create(PlayerConstants.ENCODING, { ignoreBOM: true });
         let stringData = textDecoder.decodeWithStream(value, { stream: false });

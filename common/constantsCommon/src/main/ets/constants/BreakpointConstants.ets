@@ -38,6 +38,11 @@ export class BreakpointConstants {
   static readonly BREAKPOINT_VALUE: Array<string> = ['320vp', '600vp', '840vp'];
 
   /**
+   * The break point value.
+   */
+  static readonly BREAKPOINT_VALUE_NUMBER: Array<number> = [320, 600, 840];
+
+  /**
    * The number of columns for SM device.
    */
   static readonly COLUMN_SM: number = 4;

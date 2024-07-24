@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
 import { promptAction } from '@kit.ArkUI';
 import { BreakpointType, MenuData } from '@ohos/mediaCommon';
-import { StyleConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
 import { HeaderConstants } from '../constants/HeaderConstants';
 
 @Component
 export struct Header {
-  @Link currentBreakpoint: string;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
+  @StorageLink('pageIndexInfos') pageIndexInfos: NavPathStack = new NavPathStack();
 
   build() {
     Row() {
@@ -30,7 +30,7 @@ export struct Header {
         .height($r('app.float.icon_height'))
         .margin({ left: $r('app.float.icon_margin') })
         .onClick(() => {
-          router.back();
+          this.pageIndexInfos.pop();
         })
       Text($r('app.string.play_list'))
         .fontSize(new BreakpointType({

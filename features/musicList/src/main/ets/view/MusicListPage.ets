@@ -20,11 +20,10 @@ import { Player } from '../components/Player';
 import { Content } from '../components/ListContent';
 import { songList } from '../viewmodel/SongListData'
 
-@Entry
 @Component
-struct Index {
+export struct MusicListPage {
   private breakpointSystem: BreakpointSystem = new BreakpointSystem();
-  @State currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
   @StorageLink('deviceHeight') deviceHeight: number = 0;
 
   aboutToAppear() {
@@ -39,9 +38,9 @@ struct Index {
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
-      Header({ currentBreakpoint: this.currentBreakpoint })
-      Content({ currentBreakpoint: this.currentBreakpoint })
-      Player({ currentBreakpoint: this.currentBreakpoint })
+      Header()
+      Content()
+      Player()
     }
     .width(StyleConstants.FULL_WIDTH)
     .backgroundColor(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ?

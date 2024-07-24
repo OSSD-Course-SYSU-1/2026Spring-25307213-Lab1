@@ -20,15 +20,15 @@ export class RouterUrlConstants {
   /**
    * Playback page.
    */
-  static readonly MUSIC_PLAY: string = '@bundle:com.huawei.music.musichome/musicPlay/ets/pages/PlayPage';
+  static readonly LIVE: string = 'LivePage';
 
   /**
    * Music list page.
    */
-  static readonly MUSIC_LIST: string = '@bundle:com.huawei.music.musichome/musicList/ets/pages/Index';
+  static readonly MUSIC_LIST: string = 'MusicListPage';
 
   /**
    * Music review page.
    */
-  static readonly MUSIC_COMMENT: string = '@bundle:com.huawei.music.musichome/musicComment/ets/pages/Index';
+  static readonly MUSIC_COMMENT: string = 'MusicCommentPage';
 }

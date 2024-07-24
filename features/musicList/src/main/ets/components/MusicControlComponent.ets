@@ -35,6 +35,7 @@ export struct MusicControlComponent {
   @StorageLink('imageColor') imageColor: string = 'rgba(0, 0, 2, 1.00)';
   @StorageLink('topArea') topArea: number = 0;
   @StorageLink('bottomArea') bottomArea: number = 0;
+  @State imageLabel: PixelMap | Resource = this.songList[this.selectIndex].label;
   @State isShowControl: boolean = true;
   @State isShowControlLg: boolean = false;
   @State isTablet: boolean = true;
@@ -77,7 +78,7 @@ export struct MusicControlComponent {
 
   build() {
     Stack() {
-      Image(this.songList[this.selectIndex].label)
+      Image(this.imageLabel)
         .size(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ?
           {
             width: PlayerConstants.BACK_IMAGE
@@ -88,7 +89,6 @@ export struct MusicControlComponent {
         .aspectRatio(1)
         .objectFit(ImageFit.Cover)
         .opacity(0.5)
-        .blur(PlayerConstants.IMAGE_BLUR)
       Row() {
         if (this.isFoldFull) {
           Column() {
@@ -244,7 +244,7 @@ export struct MusicControlComponent {
     if (!this.context) {
       return ;
     }
-    this.context.createModuleContext('musicList').resourceManager.getMediaContent(this.songList[this.selectIndex].label)
+    this.context.resourceManager.getMediaContent(this.songList[this.selectIndex].label)
       .then((value: Uint8Array) => {
         let buffer = value.buffer as ArrayBuffer;
         image.createImageSource(buffer).createPixelMap().then((pixelMap) => {
@@ -257,6 +257,13 @@ export struct MusicControlComponent {
               this.imageColor = `rgba(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]}, 1)`;
             }
           })
+          let headFilter = effectKit.createEffect(pixelMap);
+          if (headFilter !== null) {
+            headFilter.blur(PlayerConstants.IMAGE_BLUR);
+            headFilter.getEffectPixelMap().then((value) => {
+              this.imageLabel = value;
+            })
+          }
         })
           .catch((error: BusinessError) => {
             Logger.error(`${error.code} + ${error.message}`)

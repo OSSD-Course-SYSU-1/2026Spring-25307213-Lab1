@@ -16,15 +16,14 @@
 import { StyleConstants, BreakpointConstants } from '@ohos/constantsCommon';
 import { Comment } from '../viewmodel/Comment';
 import CommentViewModel from '../viewmodel/CommentViewModel';
-import { ListItemComponent } from '../view/ListItemComponent';
-import { HeadComponent } from '../view/HeadComponent';
-import { MusicInfoComponent } from '../view/MusicInfoComponent';
+import { ListItemComponent } from './ListItemComponent';
+import { HeadComponent } from './HeadComponent';
+import { MusicInfoComponent } from './MusicInfoComponent';
 import { CommonConstants } from '../constants/CommonConstants';
 
-@Entry
 @Component
-struct Index {
-  @State currentBp: string = BreakpointConstants.CURRENT_BREAKPOINT;
+export struct MusicCommentPage {
+  @StorageProp('currentBreakpoint') currentBp: string = BreakpointConstants.BREAKPOINT_SM;
   @State wonderfulComment: Comment[] = CommentViewModel.getWonderfulReview();
   @State newComment: Comment[] = CommentViewModel.getNewComment();
 
@@ -181,8 +180,5 @@ struct Index {
       }
     }
     .backgroundColor(Color.White)
-    .onBreakpointChange((breakpoint) => {
-      this.currentBp = breakpoint;
-    })
   }
 }

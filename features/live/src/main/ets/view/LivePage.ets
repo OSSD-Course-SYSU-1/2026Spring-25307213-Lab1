@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-import { Header } from '../view/Header';
-import { LiveList } from '../view/LiveList';
+import { Header } from './Header';
+import { LiveList } from './LiveList';
 import { LiveConstants} from '../constants/LiveConstants';
 
-@Entry
 @Component
-struct Index {
+export struct LivePage {
   build() {
     Column() {
       Header()

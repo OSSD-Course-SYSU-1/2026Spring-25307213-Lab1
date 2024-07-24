@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import { GridConstants, StyleConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants, GridConstants, StyleConstants } from '@ohos/constantsCommon';
 import { AlbumCover } from './AlbumCover';
 import { PlayList } from './PlayList';
 
 @Component
 export struct Content {
-  @Link currentBreakpoint: string;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
 
   build() {
     GridRow() {
@@ -34,8 +34,5 @@ export struct Content {
       .borderRadius($r('app.float.playlist_border_radius'))
     }
     .height(StyleConstants.FULL_HEIGHT)
-    .onBreakpointChange((breakpoints: string) => {
-      this.currentBreakpoint = breakpoints;
-    })
   }
 }

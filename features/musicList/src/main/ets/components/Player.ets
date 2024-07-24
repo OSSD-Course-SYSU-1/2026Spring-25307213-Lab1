@@ -16,7 +16,7 @@
 import { curves, window } from '@kit.ArkUI';
 import { displaySync } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { StyleConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
 import { BreakpointType, Logger, MediaService, SongItem } from '@ohos/mediaCommon';
 import { PlayerConstants } from '../constants/PlayerConstants';
 import { MusicControlComponent } from './MusicControlComponent';
@@ -29,7 +29,7 @@ export struct Player {
   @StorageLink('songList') songList: SongItem[] = [];
   @StorageLink('topArea') topArea: number = 0;
   @StorageLink('bottomArea') bottomArea: number = 0;
-  @Link currentBreakpoint: string;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
   @State imageRotate: number = 0;
   @StorageLink('isShowPlay') isShowPlay: boolean = false;
   @State componentHeight: number = 0;

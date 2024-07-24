@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-import { router } from '@kit.ArkUI';
 import { LiveConstants } from '../constants/LiveConstants';
 
 @Component
 export struct Header {
+  @StorageLink('pageIndexInfos') pageIndexInfos: NavPathStack = new NavPathStack();
+
   build() {
     Row() {
       Image($r('app.media.ic_back'))
@@ -25,7 +26,7 @@ export struct Header {
         .height($r('app.float.back_height'))
         .margin({ left: $r('app.float.back_left_margin') })
         .onClick(() => {
-          router.back();
+          this.pageIndexInfos.pop();
         })
       Text($r('app.string.live_title'))
         .fontSize($r('app.float.title_font_size'))
