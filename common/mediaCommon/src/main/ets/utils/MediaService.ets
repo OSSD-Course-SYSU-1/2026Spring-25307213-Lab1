@@ -297,10 +297,6 @@ export class MediaService {
       }
     } else {
       await this.stop();
-      Logger.info(`loadAssent reset ${this.songItem} src ${this.songList[this.musicIndex].src}`)
-      if (this.songItem === null || this.songItem.src !== this.songList[this.musicIndex].src) {
-        await this.reset();
-      }
     }
   }
 
