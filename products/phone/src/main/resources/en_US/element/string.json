@@ -38,7 +38,7 @@
     },
     {
       "name": "reason_background",
-      "value": "keep background running"
+      "value": "Allow applications to use the ability to run in the background while playing music scenes."
     }
   ]
 }
