@@ -291,7 +291,6 @@ export class MediaService {
       return;
     }
     BackgroundUtil.startContinuousTask(this.context);
-    console.log('111111loadAssent')
     this.updateMusicIndex(musicIndex);
     if (this.isFirst && this.avPlayer) {
       this.isFirst = false;

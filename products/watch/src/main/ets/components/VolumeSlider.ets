@@ -70,15 +70,6 @@ export struct VolumeSlider {
     }
   }
 
-  aboutToAppear() {
-    const mediaService = MediaService.getInstance();
-    const currentState = mediaService.avPlayer?.state;
-    const validStates = ['prepared', 'playing', 'paused', 'completed', 'stopped'];
-    if (!currentState || !validStates.includes(currentState)) {
-      mediaService.loadAssent(0);
-    }
-  }
-
   build() {
     Column() {
       ArcSlider({ options: this.arcSliderOptions })
