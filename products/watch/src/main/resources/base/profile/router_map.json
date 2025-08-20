@@ -1,0 +1,19 @@
+{
+  "routerMap" : [
+    {
+      "name" : "playList",
+      "pageSourceFile"  : "src/main/ets/pages/PlayList.ets",
+      "buildFunction" : "PlayListBuilder"
+    },
+    {
+      "name" : "songList",
+      "pageSourceFile"  : "src/main/ets/pages/SongList.ets",
+      "buildFunction" : "SongListBuilder"
+    },
+    {
+      "name" : "songPage",
+      "pageSourceFile"  : "src/main/ets/pages/SongPage.ets",
+      "buildFunction" : "SongPageBuilder"
+    }
+  ]
+}

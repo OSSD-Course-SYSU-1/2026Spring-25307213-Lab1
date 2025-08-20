@@ -155,6 +155,10 @@ export class MediaService {
     Logger.info(TAG, `on playPrevious , do playPrevious task`);
     this.playPrevious();
   };
+  private volumeChangeCall: (volume: number) => void = (volume: number) => {
+    Logger.info(TAG, `on volumeChangeCall , do volumeChange task`);
+    AppStorage.setOrCreate('volume', volume);
+  };
 
   constructor() {
     let list: SongItem[] | undefined = AppStorage.get('songList');
@@ -197,6 +201,8 @@ export class MediaService {
     this.avPlayer.on('timeUpdate', this.updateTimeCall);
 
     this.avPlayer.on('stateChange', this.stateCall)
+
+    this.avPlayer.on('volumeChange', this.volumeChangeCall);
   }
 
   async createSession() {
@@ -285,6 +291,7 @@ export class MediaService {
       return;
     }
     BackgroundUtil.startContinuousTask(this.context);
+    console.log('111111loadAssent')
     this.updateMusicIndex(musicIndex);
     if (this.isFirst && this.avPlayer) {
       this.isFirst = false;
