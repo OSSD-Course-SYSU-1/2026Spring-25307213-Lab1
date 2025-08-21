@@ -14,7 +14,7 @@
  */
 
 import { LengthMetrics } from '@kit.ArkUI';
-import { ArcList, ArcListItem, ArcListAttribute,ArcListItemAttribute } from '@kit.ArkUI';
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 import { MediaService, SongItem } from '@ohos/mediaCommon';
 import { StyleConstants } from '../constants/StyleConstants';
 

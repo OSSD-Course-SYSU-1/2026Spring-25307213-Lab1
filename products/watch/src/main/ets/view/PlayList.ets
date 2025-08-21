@@ -13,16 +13,9 @@
  * limitations under the License.
  */
 
-import {
-  ArcSwiper, ArcSwiperAttribute, ArcSwiperController
-} from '@kit.ArkUI';
+import { ArcSwiper, ArcSwiperAttribute, ArcSwiperController } from '@kit.ArkUI';
 import { StyleConstants } from '../constants/StyleConstants';
-
-interface PlayListSheet {
-  name: ResourceStr,
-  background: ResourceStr,
-  title: ResourceStr,
-}
+import { PlayListSheet } from '../viewmodel/ViewModel'
 
 @Builder
 export function PlayListBuilder() {

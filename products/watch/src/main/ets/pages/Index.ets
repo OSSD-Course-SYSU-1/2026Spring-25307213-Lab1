@@ -21,8 +21,8 @@ import {
   ArcDirection,
   ArcSwiperController
 } from '@kit.ArkUI';
-import { Home } from './Home';
-import { PlayList } from './PlayList';
+import { Home } from '../view/Home';
+import { PlayList } from '../view/PlayList';
 import { MediaService } from '@ohos/mediaCommon';
 import { songList } from 'musicList';
 import { StyleConstants } from '../constants/StyleConstants';

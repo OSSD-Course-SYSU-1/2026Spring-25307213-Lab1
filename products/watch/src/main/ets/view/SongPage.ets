@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 
-
-import { BusinessError } from '@kit.BasicServicesKit';
 import { MediaService, SongItem } from '@ohos/mediaCommon';
 import { StyleConstants } from '../constants/StyleConstants';
-import { VolumeSlider } from '../components//VolumeSlider'
+import { VolumeSlider } from './VolumeSliderComponent'
 
 @Builder
 export function SongPageBuilder() {
@@ -25,7 +23,6 @@ export function SongPageBuilder() {
 }
 
 @Preview
-@Entry
 @Component
 struct SongPage {
   @StorageLink('songList') songList: SongItem[] = [];
@@ -33,6 +30,12 @@ struct SongPage {
   @StorageLink('isPlay') isPlay: boolean = false;
   @StorageLink('progress') time: number = 0;
   @StorageLink('progressMax') max: number = 0;
+
+  aboutToAppear(): void {
+    if (!this.selectIndex) {
+      MediaService.getInstance().loadAssent(0, false)
+    }
+  }
 
   build() {
     NavDestination() {

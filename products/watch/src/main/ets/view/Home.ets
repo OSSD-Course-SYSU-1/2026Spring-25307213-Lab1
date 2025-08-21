@@ -16,12 +16,7 @@
 import { LengthMetrics } from '@kit.ArkUI';
 import { ArcList, ArcListItem, ArcListAttribute } from '@kit.ArkUI';
 import { StyleConstants } from '../constants/StyleConstants';
-
-interface Menu {
-  icon: ResourceStr,
-  text: ResourceStr,
-  pathName: string
-}
+import { Menu } from '../viewmodel/ViewModel'
 
 @Preview
 @Component

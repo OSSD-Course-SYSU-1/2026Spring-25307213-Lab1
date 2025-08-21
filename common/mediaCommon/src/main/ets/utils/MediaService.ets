@@ -46,6 +46,7 @@ export class MediaService {
   private songList: SongItem[] = [];
   private formIds: string[] = [];
   private isCurrent: boolean = true;
+  private isNeedPlay: boolean = true;
 
   private seekCall: (seekDoneTime: number) => void = (seekDoneTime: number) => {
     this.isCurrent = true;
@@ -97,10 +98,11 @@ export class MediaService {
         this.isPrepared = true;
         AppStorage.setOrCreate('totalTime', MediaTools.msToCountdownTime(this.getDuration()));
         AppStorage.setOrCreate('progressMax', this.getDuration());
-        if (this.avPlayer) {
+        if (this.avPlayer && this.isNeedPlay) {
           this.avPlayer.play();
         }
         this.setAVMetadata();
+        this.isNeedPlay = true
         Logger.info(TAG, 'AVPlayer prepared succeeded.');
         break;
       case 'playing':
@@ -284,8 +286,9 @@ export class MediaService {
    * Play music by index.
    *
    * @param musicIndex
+   * @param isNeedPlay
    */
-  async loadAssent(musicIndex: number) {
+  async loadAssent(musicIndex: number, isNeedPlay: boolean = true) {
     if (musicIndex >= this.songList.length) {
       Logger.error(TAG, `current musicIndex ${musicIndex}`);
       return;
@@ -297,6 +300,9 @@ export class MediaService {
       this.songItem = await this.songItemBuilder.build(this.songList[this.musicIndex]);
       let url = this.songItemBuilder.getRealUrl();
       if (url) {
+        if (!isNeedPlay) {
+          this.isNeedPlay = false
+        }
         let avFileDescriptor: media.AVFileDescriptor = { fd: url.fd, offset: url.offset, length: url.length };
         this.avPlayer.fdSrc = avFileDescriptor;
         Logger.info(TAG, 'loadAsset avPlayer.url:' + this.avPlayer.fdSrc);
