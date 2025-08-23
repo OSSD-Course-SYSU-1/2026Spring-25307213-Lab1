@@ -62,8 +62,7 @@ export struct PlayList {
               Image($r('app.media.play_btn_fill'))
                 .width($r('app.float.playlist_icon'))
                 .height($r('app.float.playlist_icon'))
-                .position({ x: '50%', y: '50%' })
-                .markAnchor({ x: 60, y: -35 })
+                .position({ x: '25%', y: '65%' })
               Text(item.title)
             }
             .width(StyleConstants.FULL_WIDTH)

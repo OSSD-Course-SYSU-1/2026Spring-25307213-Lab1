@@ -30,11 +30,13 @@ struct SongPage {
   @StorageLink('isPlay') isPlay: boolean = false;
   @StorageLink('progress') time: number = 0;
   @StorageLink('progressMax') max: number = 0;
+  @StorageLink('isFirstLaunch') isFirstLaunch: boolean = true
 
   aboutToAppear(): void {
-    if (!this.selectIndex) {
+    if (this.isFirstLaunch) {
       MediaService.getInstance().loadAssent(0, false)
     }
+    AppStorage.setOrCreate('isFirstLaunch', false)
   }
 
   build() {
@@ -115,7 +117,6 @@ struct SongPage {
       .height(StyleConstants.FULL_HEIGHT)
       .padding({ top: $r('app.float.play_column_padding'), bottom: $r('app.float.play_column_padding') })
       .justifyContent(FlexAlign.SpaceAround)
-
       VolumeSlider()
     }
     .hideTitleBar(true)

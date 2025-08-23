@@ -14,7 +14,6 @@
  */
 
 import {
-  CircleShape,
   ArcSwiper,
   ArcSwiperAttribute,
   ArcDotIndicator,
@@ -49,17 +48,11 @@ struct Index {
             Home()
             PlayList()
           }
-          .clipShape(new CircleShape({ width: StyleConstants.FULL_WIDTH, height: StyleConstants.FULL_HEIGHT }))
-          .effectMode(EdgeEffect.None)
-          .backgroundColor(Color.Transparent)
-          .index(0)
           .duration(400)
-          .vertical(false)
           .indicator(this.arcDotIndicator
             .arcDirection(ArcDirection.SIX_CLOCK_DIRECTION)
+            .selectedItemColor('#FE1B48')
           )
-          .disableSwipe(false)
-          .digitalCrownSensitivity(CrownSensitivity.MEDIUM)
           .onAnimationStart((index: number, targetIndex: number) => {
             this.innerSelectedIndex = targetIndex;
           })
@@ -80,7 +73,6 @@ struct Index {
             }
             return GestureJudgeResult.CONTINUE;
           })
-          .disableTransitionAnimation(false)
         }.height(StyleConstants.FULL_HEIGHT)
       }.width(StyleConstants.FULL_WIDTH)
     }
