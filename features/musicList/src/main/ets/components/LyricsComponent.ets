@@ -61,7 +61,7 @@ export struct LyricsComponent {
         } else if (this.songList[this.selectIndex].lyric.endsWith(LyricFile.LRC)) {
           this.mLrcEntryList = parseLrcLyric(stringData);
         }
-      })
+      });
   }
 
   build() {
