@@ -29,6 +29,4 @@ export class StyleConstants {
    * Circle Border Radius.
    */
   static readonly CIRCLE_BORDER_RADIUS: string = '50%';
-  static readonly HOME_BTN_WIDTH: string = '90%';
-  static readonly HALF_WIDTH: string = '50%';
 }

@@ -31,9 +31,9 @@ import { StyleConstants } from '../constants/StyleConstants';
 @Component
 struct Index {
   @Provide pageStack: NavPathStack = new NavPathStack();
+  innerSelectedIndex: number = 0;
   private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
   private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator();
-  innerSelectedIndex: number = 0;
 
   aboutToAppear(): void {
     AppStorage.setOrCreate('songList', songList);
@@ -57,11 +57,12 @@ struct Index {
             this.innerSelectedIndex = targetIndex;
           })
           .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
-            others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+            others: Array<GestureRecognizer>): GestureJudgeResult => { // When the recognizer is about to succeed, set the recognizer enable status based on the current component state.
             if (current) {
               let target = current.getEventTargetInfo();
               if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
-                let swiperTarget = target as ScrollableTargetInfo
+                // Here, the condition `swiperTarget.isBegin()` or `innerSelectedIndex === 0` indicates that the ArcSwiper has been swiped to the beginning.
+                let swiperTarget = target as ScrollableTargetInfo;
                 if (swiperTarget instanceof ScrollableTargetInfo &&
                   (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) {
                   let panEvent = event as PanGestureEvent;
@@ -73,8 +74,10 @@ struct Index {
             }
             return GestureJudgeResult.CONTINUE;
           })
-        }.height(StyleConstants.FULL_HEIGHT)
-      }.width(StyleConstants.FULL_WIDTH)
+        }
+        .height(StyleConstants.FULL_HEIGHT)
+      }
+      .width(StyleConstants.FULL_WIDTH)
     }
     .hideTitleBar(true)
   }

@@ -27,6 +27,7 @@ import {
 } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { MediaService } from '@ohos/mediaCommon';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Preview
 @Component
@@ -57,16 +58,16 @@ export struct VolumeSlider {
     styleOptions: this.styleOptions,
     digitalCrownSensitivity: CrownSensitivity.LOW,
     onChange: (progress: number) => {
-      this.setAVPlayerVolume(progress)
+      this.setAVPlayerVolume(progress);
     },
   };
   arcSliderOptions: ArcSliderOptions = new ArcSliderOptions(this.arcSliderOptionsConstructorOptions);
 
   setAVPlayerVolume(progress: number) {
     try {
-      MediaService.getInstance().avPlayer?.setVolume(progress / 100)
+      MediaService.getInstance().avPlayer?.setVolume(progress / 100);
     } catch (error) {
-      console.error("ArcSlider setVolume failed", (error as BusinessError).code);
+      hilog.error(0x0000, 'volumeSlider', "ArcSlider setVolume failed", (error as BusinessError).code);
     }
   }
 

@@ -21,7 +21,7 @@ export default class EntryAbility extends UIAbility {
   private windowObj?: window.Window;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    AppStorage.setOrCreate('context', this.context)
+    AppStorage.setOrCreate('context', this.context);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
@@ -38,8 +38,8 @@ export default class EntryAbility extends UIAbility {
       this.updateBreakpoint(this.windowObj.getWindowProperties().windowRect.width);
       this.windowObj.on('windowSizeChange', (windowSize: window.Size) => {
         this.updateBreakpoint(windowSize.width);
-      })
-    })
+      });
+    });
 
     windowStage.loadContent('pages/Index', (err) => {
       AppStorage.setOrCreate('uiContext', windowStage.getMainWindowSync().getUIContext());

@@ -68,7 +68,7 @@ export function parseLrcLyric(text: string): Array<LrcEntry> {
   if (lrc && lrc.length > 0) {
     lrc.sort((a, b) => {
       return a.lineStartTime - b.lineStartTime;
-    })
+    });
     for (let i = 0; i < lrc.length; i++) {
       if (i === lrc.length - 1) {
         lrc[i].lineDuration = Number.MAX_VALUE;
@@ -125,7 +125,7 @@ export function parseKrcLyric(lyricText: string): LrcEntry[] {
   }
   lyricLines.sort((a, b) => {
     return a.lineStartTime - b.lineStartTime;
-  })
+  });
   return lyricLines;
 }
 

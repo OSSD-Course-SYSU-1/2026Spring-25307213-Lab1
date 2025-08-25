@@ -15,7 +15,7 @@
 
 import { MediaService, SongItem } from '@ohos/mediaCommon';
 import { StyleConstants } from '../constants/StyleConstants';
-import { VolumeSlider } from './VolumeSliderComponent'
+import { VolumeSlider } from './VolumeSliderComponent';
 
 @Builder
 export function SongPageBuilder() {
@@ -30,13 +30,14 @@ struct SongPage {
   @StorageLink('isPlay') isPlay: boolean = false;
   @StorageLink('progress') time: number = 0;
   @StorageLink('progressMax') max: number = 0;
-  @StorageLink('isFirstLaunch') isFirstLaunch: boolean = true
+  @StorageLink('isFirstLaunch') isFirstLaunch: boolean = true;
+  readonly HALF_WIDTH: string = '50%';
 
   aboutToAppear(): void {
     if (this.isFirstLaunch) {
-      MediaService.getInstance().loadAssent(0, false)
+      MediaService.getInstance().loadAssent(0, true);
     }
-    AppStorage.setOrCreate('isFirstLaunch', false)
+    AppStorage.setOrCreate('isFirstLaunch', false);
   }
 
   build() {
@@ -56,7 +57,7 @@ struct SongPage {
               .width($r('app.float.play_song_img'))
           }
           .onClick(() => {
-            MediaService.getInstance().playPrevious()
+            MediaService.getInstance().playPrevious();
           })
 
           Stack() {
@@ -85,10 +86,10 @@ struct SongPage {
               .width($r('app.float.play_song_img'))
               .visibility(this.isPlay === true ? Visibility.Visible : Visibility.None)
               .onClick(() => {
-                MediaService.getInstance().pause()
+                MediaService.getInstance().pause();
               })
           }
-          .width(StyleConstants.HALF_WIDTH)
+          .width(this.HALF_WIDTH)
           .align(Alignment.Center)
 
           Column() {
@@ -96,7 +97,7 @@ struct SongPage {
               .width($r('app.float.play_song_img'))
           }
           .onClick(() => {
-            MediaService.getInstance().playNextAuto(true)
+            MediaService.getInstance().playNextAuto(true);
           })
         }
         .justifyContent(FlexAlign.SpaceAround)

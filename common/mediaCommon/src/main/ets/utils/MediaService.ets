@@ -102,7 +102,7 @@ export class MediaService {
           this.avPlayer.play();
         }
         this.setAVMetadata();
-        this.isNeedPlay = true
+        this.isNeedPlay = true;
         Logger.info(TAG, 'AVPlayer prepared succeeded.');
         break;
       case 'playing':
@@ -158,7 +158,7 @@ export class MediaService {
     this.playPrevious();
   };
   private volumeChangeCall: (volume: number) => void = (volume: number) => {
-    Logger.info(TAG, `on volumeChangeCall , do volumeChange task`);
+    Logger.info(TAG, `on volumeChangeCall, do volumeChange task`);
     AppStorage.setOrCreate('volume', volume);
   };
 
@@ -188,8 +188,8 @@ export class MediaService {
         this.createSession();
       }
     }) .catch((error: BusinessError) => {
-      Logger.error(TAG, 'this avPlayer: ', `catch error happened,error code is ${error.code}`)
-    })
+      Logger.error(TAG, 'this avPlayer: ', `catch error happened,error code is ${error.code}`);
+    });
   }
 
   private setAVPlayerCallback() {
@@ -202,7 +202,7 @@ export class MediaService {
 
     this.avPlayer.on('timeUpdate', this.updateTimeCall);
 
-    this.avPlayer.on('stateChange', this.stateCall)
+    this.avPlayer.on('stateChange', this.stateCall);
 
     this.avPlayer.on('volumeChange', this.volumeChangeCall);
   }
@@ -225,12 +225,12 @@ export class MediaService {
       operationType: wantAgent.OperationType.START_ABILITIES,
       requestCode: 0,
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-    }
+    };
     wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
       if (this.session) {
         this.session.setLaunchAbility(agent);
       }
-    })
+    });
     this.setListenerForMesFromController();
   }
 
@@ -288,7 +288,7 @@ export class MediaService {
    * @param musicIndex
    * @param isNeedPlay
    */
-  async loadAssent(musicIndex: number, isNeedPlay: boolean = true) {
+  async loadAssent(musicIndex: number, loadOnly?: boolean) {
     if (musicIndex >= this.songList.length) {
       Logger.error(TAG, `current musicIndex ${musicIndex}`);
       return;
@@ -300,8 +300,8 @@ export class MediaService {
       this.songItem = await this.songItemBuilder.build(this.songList[this.musicIndex]);
       let url = this.songItemBuilder.getRealUrl();
       if (url) {
-        if (!isNeedPlay) {
-          this.isNeedPlay = false
+        if (loadOnly) {
+          this.isNeedPlay = false;
         }
         let avFileDescriptor: media.AVFileDescriptor = { fd: url.fd, offset: url.offset, length: url.length };
         this.avPlayer.fdSrc = avFileDescriptor;
@@ -384,7 +384,7 @@ export class MediaService {
     if (this.avPlayer) {
       this.avPlayer.prepare().then(() => {
       }).catch((error: BusinessError) => {
-        Logger.error(TAG, `start error ${JSON.stringify(error)}`)
+        Logger.error(TAG, `start error ${JSON.stringify(error)}`);
         this.state = AudioPlayerState.ERROR;
         this.updateIsPlay(false);
         this.isPrepared = false;
@@ -406,7 +406,7 @@ export class MediaService {
         this.seek(this.getCurrentTime());
         this.updateIsPlay(true);
         this.state = AudioPlayerState.PLAY;
-      })
+      });
     }
   }
 
@@ -601,7 +601,7 @@ export class MediaService {
         musicCover: this.songList[this.musicIndex].label,
         musicSinger: this.songList[this.musicIndex].singer,
         cardSongList: cardSongList
-      }
+      };
       let formInfo = formBindingData.createFormBindingData(formData);
 
       this.formIds.forEach(formId => {
@@ -612,8 +612,8 @@ export class MediaService {
           if (error.code === SongConstants.ID_NO_EXIT && this.context) {
             PreferencesUtil.getInstance().removeFormId(this.context, formId);
           }
-        })
-      })
+        });
+      });
     } catch (error) {
       Logger.error(TAG, `updateCardData err: ${(error as BusinessError).code}`);
     }
@@ -629,7 +629,7 @@ export class MediaService {
     }
     let formData: Record<string, boolean> = {
       'isPlay': false
-    }
+    };
     let formInfo = formBindingData.createFormBindingData(formData);
     for (let index = 0; index < this.formIds.length; index++) {
       await formProvider.updateForm(this.formIds[index], formInfo);

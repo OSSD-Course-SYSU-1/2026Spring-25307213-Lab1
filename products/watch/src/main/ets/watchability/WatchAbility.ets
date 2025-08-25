@@ -6,7 +6,7 @@ const DOMAIN = 0x0000;
 
 export default class WatchAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    AppStorage.setOrCreate('context', this.context)
+    AppStorage.setOrCreate('context', this.context);
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
@@ -20,7 +20,7 @@ export default class WatchAbility extends UIAbility {
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        hilog.error(DOMAIN, 'testTag', `${err.code} + ${err.message}`);
         return;
       }
       AppStorage.setOrCreate('uiContext', windowStage.getMainWindowSync().getUIContext());

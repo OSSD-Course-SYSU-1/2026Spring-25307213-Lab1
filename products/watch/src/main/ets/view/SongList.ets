@@ -26,11 +26,12 @@ export function SongListBuilder() {
 @Preview
 @Component
 struct SongList {
+  readonly HOME_BTN_WIDTH: string = '90%';
   @Consume pageStack: NavPathStack;
   @StorageLink('songList') songList: SongItem[] = [];
 
   aboutToAppear(): void {
-    MediaService.getInstance()
+    MediaService.getInstance();
   }
 
   build() {
@@ -54,7 +55,7 @@ struct SongList {
                 }
                 .layoutWeight(1)
               }
-              .width(StyleConstants.HOME_BTN_WIDTH)
+              .width(this.HOME_BTN_WIDTH)
               .height($r('app.float.home_btn_height'))
               .padding({ left: $r('app.float.list_btn_padding'), right: $r('app.float.list_btn_padding') })
               .borderRadius(StyleConstants.CIRCLE_BORDER_RADIUS)
@@ -64,10 +65,10 @@ struct SongList {
             }
             .align(Alignment.Center)
             .onClick(async () => {
-              await MediaService.getInstance().loadAssent(index)
-              this.pageStack.replacePathByName('songPage', null)
+              await MediaService.getInstance().loadAssent(index);
+              this.pageStack.replacePathByName('songPage', null);
             })
-          }, (item: SongItem, index: number) => (item).toString() + index)
+          }, (item: SongItem, index: number) => JSON.stringify(item) + index)
         }
         .scrollBar(BarState.Off)
         .space(LengthMetrics.vp(5))

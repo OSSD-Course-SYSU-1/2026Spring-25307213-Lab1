@@ -16,23 +16,51 @@
 import { LengthMetrics } from '@kit.ArkUI';
 import { ArcList, ArcListItem, ArcListAttribute } from '@kit.ArkUI';
 import { StyleConstants } from '../constants/StyleConstants';
-import { Menu } from '../viewmodel/ViewModel'
+
+class Menu {
+  icon: Resource;
+  text: Resource;
+  pathName: string;
+
+  constructor(icon: Resource, text: Resource, pathName: string) {
+    this.icon = icon;
+    this.text = text;
+    this.pathName = pathName;
+  }
+}
 
 @Preview
 @Component
 export struct Home {
-  @Consume pageStack: NavPathStack
-  private MenuList: Menu[] = [
-    { icon: $r('app.media.hottest_playlists'), text: $r('app.string.home_hottest_playlists'), pathName: 'playList' },
-    { icon: $r('app.media.my_favorite'), text: $r('app.string.home_my_favorite'), pathName: 'songList' },
-    { icon: $r('app.media.is_playing'), text: $r('app.string.home_is_playing'), pathName: 'songPage' },
-    { icon: $r('app.media.setting'), text: $r('app.string.home_setting'), pathName: 'setting' }
-  ]
+  @Consume pageStack: NavPathStack;
+  readonly HOME_BTN_WIDTH: string = '90%';
+  private menuList: Menu[] = [
+    new Menu(
+      $r('app.media.hottest_playlists'),
+      $r('app.string.home_hottest_playlists'),
+      'playList'
+    ),
+    new Menu(
+      $r('app.media.my_favorite'),
+      $r('app.string.home_my_favorite'),
+      'songList'
+    ),
+    new Menu(
+      $r('app.media.is_playing'),
+      $r('app.string.home_is_playing'),
+      'songPage'
+    ),
+    new Menu(
+      $r('app.media.setting'),
+      $r('app.string.home_setting'),
+      'setting'
+    )
+  ];
 
   build() {
     Column() {
       ArcList({ initialIndex: 0 }) {
-        ForEach(this.MenuList, (item: Menu) => {
+        ForEach(this.menuList, (item: Menu) => {
           ArcListItem() {
             Row() {
               Image(item.icon)
@@ -48,7 +76,7 @@ export struct Home {
               Image($r('app.media.chevron_right'))
                 .width($r('app.float.home_icon_jump_width'))
             }
-            .width(StyleConstants.HOME_BTN_WIDTH)
+            .width(this.HOME_BTN_WIDTH)
             .height($r('app.float.home_btn_height'))
             .padding({ left: $r('app.float.list_btn_padding'), right: $r('app.float.list_btn_padding') })
             .justifyContent(FlexAlign.SpaceBetween)
@@ -58,13 +86,13 @@ export struct Home {
             .backgroundColor($r('app.color.home_btn_background'))
             .onClick(() => {
               if (item.pathName === 'setting') {
-                return
+                return;
               }
               this.pageStack.replacePathByName(item.pathName, null);
             })
           }
         },
-          (item: Menu, index: number) => (item).toString() + index)
+          (item: Menu, index: number) => JSON.stringify(item) + index)
       }
       .scrollBar(BarState.Off)
       .space(LengthMetrics.vp(5))

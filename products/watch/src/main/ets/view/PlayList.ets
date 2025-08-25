@@ -15,39 +15,50 @@
 
 import { ArcSwiper, ArcSwiperAttribute, ArcSwiperController } from '@kit.ArkUI';
 import { StyleConstants } from '../constants/StyleConstants';
-import { PlayListSheet } from '../viewmodel/ViewModel'
 
 @Builder
 export function PlayListBuilder() {
   PlayList();
 }
 
+class PlayListSheet {
+  name: Resource;
+  background: Resource;
+  title: Resource;
+
+  constructor(name: Resource, background: Resource, title: Resource) {
+    this.name = name;
+    this.background = background;
+    this.title = title;
+  }
+}
+
 @Preview
 @Component
 export struct PlayList {
-  @Consume pageStack: NavPathStack
+  @Consume pageStack: NavPathStack;
   @State itemSimpleColor: Color | number | string = '';
   @State selectedItemSimpleColor: Color | number | string = '';
   innerSelectedIndex: number = 0;
   private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
   private playList: PlayListSheet[] = [
-    {
-      name: $r('app.string.playlist_name_one'),
-      background: $r('app.media.playlist_bg1'),
-      title: $r('app.string.playlist_title_one'),
-    },
-    {
-      name: $r('app.string.playlist_name_two'),
-      background: $r('app.media.playlist_bg2'),
-      title: $r('app.string.playlist_title_two'),
-    }
-  ]
+    new PlayListSheet(
+      $r('app.string.playlist_name_one'),
+      $r('app.media.playlist_bg1'),
+      $r('app.string.playlist_title_one')
+    ),
+    new PlayListSheet(
+      $r('app.string.playlist_name_two'),
+      $r('app.media.playlist_bg2'),
+      $r('app.string.playlist_title_two')
+    )
+  ];
 
   build() {
     NavDestination() {
       Column() {
         ArcSwiper(this.wearableSwiperController) {
-          ForEach(this.playList, (item: PlayListSheet) => {
+          ForEach(this.playList, (item: PlayListSheet, index: number) => {
             Column({ space: 10 }) {
               Row() {
                 Text(item.name)
@@ -72,9 +83,9 @@ export struct PlayList {
             .justifyContent(FlexAlign.SpaceBetween)
             .padding({ top: $r('app.float.playlist_row_padding'), bottom: $r('app.float.playlist_row_padding') })
             .onClick(() => {
-              this.pageStack.replacePathByName('songList', null)
+              this.pageStack.replacePathByName('songList', null);
             })
-          })
+          }, (item: PlayListSheet, index?: number) => index + JSON.stringify(item))
         }
         .index(0)
         .duration(400)
@@ -87,12 +98,12 @@ export struct PlayList {
           this.innerSelectedIndex = targetIndex;
         })
         .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
-        ): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+        ): GestureJudgeResult => { // When the recognizer is about to succeed, set the recognizer enable status based on the current component state.
           if (current) {
             let target = current.getEventTargetInfo();
             if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
-              // 此处判断swiperTarget.isBegin()或innerSelectedIndex === 0，表明ArcSwiper滑动到开头
-              let swiperTarget = target as ScrollableTargetInfo
+              // Here, the condition `swiperTarget.isBegin()` or `innerSelectedIndex === 0` indicates that the ArcSwiper has been swiped to the beginning.
+              let swiperTarget = target as ScrollableTargetInfo;
               if (swiperTarget instanceof ScrollableTargetInfo &&
                 (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) {
                 let panEvent = event as PanGestureEvent;
