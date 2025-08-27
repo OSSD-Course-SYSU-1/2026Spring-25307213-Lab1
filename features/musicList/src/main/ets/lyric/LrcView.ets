@@ -481,7 +481,7 @@ export default struct shiLrcView {
             this.context.fillText(text, this.lrcX, this.lrcY, this.lrcWidth);
           }
           else {
-            this.context.textAlign = 'center'
+            this.context.textAlign = 'center';
             this.context.fillText(text, this.lrcX, this.lrcY, this.lrcWidth);
           }
           break;
