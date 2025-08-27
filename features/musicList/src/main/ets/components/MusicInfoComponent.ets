@@ -47,8 +47,8 @@ export struct MusicInfoComponent {
         offset: { md: BreakpointConstants.OFFSET_MD }
       }) {
         Column() {
-          this.CoverInfo();
-          this.MusicInfo();
+          this.CoverInfo()
+          this.MusicInfo()
           Blank()
           ControlAreaComponent()
         }

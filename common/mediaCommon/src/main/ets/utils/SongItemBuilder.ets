@@ -32,18 +32,18 @@ export default class SongItemBuilder {
     let rawfileFd = await this.context.resourceManager.getRawFd(songItem.src)
       .catch((error: BusinessError) => {
         Logger.error(`resourceManager error code ${error.code} message ${error.message}`);
-      });
+      })
     if (rawfileFd) {
       this.realUrl = rawfileFd;
     } else {
-      Logger.error('get rawfileFd failed');
+      Logger.error('get rawfileFd failed')
     }
     Logger.info('MediaAssetBuilder build realUrl:' + this.realUrl);
     return this.songItem;
   }
 
   public getRealUrl(): resourceManager.RawFileDescriptor | undefined {
-    Logger.info(`url ${this.realUrl}`);
+    Logger.info(`url ${this.realUrl}`)
     return this.realUrl;
   }
 
