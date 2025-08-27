@@ -1,6 +1,6 @@
 # 多设备音乐界面
 
-### 简介
+## 项目简介
 
 基于自适应和响应式布局，实现一次开发、多端部署音乐专辑。
 
@@ -16,21 +16,26 @@
 
 ![](screenshots/device/pad.png)
 
-### 使用说明
+智能穿戴效果图如下：
 
-1. 分别在手机、折叠屏、平板安装并打开应用，不同设备的应用页面通过响应式布局和自适应布局呈现不同的效果。
+<img src="./screenshots/device/wearable.png" width="320">
+
+
+## 使用说明
+
+1. 分别在手机、折叠屏、平板、智能穿戴安装并打开应用，不同设备的应用页面通过响应式布局和自适应布局呈现不同的效果。
 2. 点击界面上播放/暂停、上一首、下一首图标控制音乐播放功能。
 3. 点击界面上播放控制区空白处或列表歌曲跳转到播放页面。
 4. 点击界面上评论按钮跳转到对应的评论页面。
 5. 其他按钮无实际点击事件或功能。
 
-### 相关权限
+## 相关权限
 
 不涉及
 
-### 约束与限制
+## 约束与限制
 
-1. 本示例仅支持标准系统上运行，支持设备：华为手机。
-2. HarmonyOS系统：HarmonyOS 5.0.0 Release及以上。
-3. DevEco Studio版本：DevEco Studio 5.0.0 Release及以上。
-4. HarmonyOS SDK版本：HarmonyOS 5.0.0 Release SDK及以上。
+1. 本示例仅支持标准系统上运行，支持设备：华为手机、平板、PC/2in1、智能穿戴。
+2. HarmonyOS系统：HarmonyOS 5.1.0 Release及以上。
+3. DevEco Studio版本：DevEco Studio 5.1.0 Release及以上。
+4. HarmonyOS SDK版本：HarmonyOS 5.1.0 Release SDK及以上。

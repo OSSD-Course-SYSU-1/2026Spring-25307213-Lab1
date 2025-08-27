@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -100,7 +101,7 @@ export struct PlayList {
         .width($r('app.float.order_icon_size'))
     }
     .onClick(() => {
-      MediaService.getInstance().loadAssent(index)
+      MediaService.getInstance().loadAssent(index);
       this.isShowPlay = true;
     })
     .height($r('app.float.list_item_height'))
@@ -109,19 +110,19 @@ export struct PlayList {
 
   build() {
     Column() {
-      this.PlayAll()
+      this.PlayAll();
       List() {
         LazyForEach(new SongDataSource(this.songList), (item: SongItem, index: number) => {
           ListItem() {
             Column() {
-              this.SongItem(item, index)
+              this.SongItem(item, index);
             }
             .padding({
               left: $r('app.float.list_item_padding'),
               right: $r('app.float.list_item_padding')
             })
           }
-        }, (item: SongItem, index?: number) => JSON.stringify(item) + index)
+        }, (item: SongItem, index?: number) => (item).toString() + index)
       }
       .width(StyleConstants.FULL_WIDTH)
       .backgroundColor(Color.White)
@@ -129,6 +130,7 @@ export struct PlayList {
       .lanes(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ?
         ContentConstants.COL_TWO : ContentConstants.COL_ONE)
       .layoutWeight(1)
+      .cachedCount(2)
       .divider({
         color: $r('app.color.list_divider'),
         strokeWidth: $r('app.float.stroke_width'),

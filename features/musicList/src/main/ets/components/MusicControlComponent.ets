@@ -258,21 +258,21 @@ export struct MusicControlComponent {
               let colorArr = ColorConversion.dealColor(color.red, color.green, color.blue);
               this.imageColor = `rgba(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]}, 1)`;
             }
-          })
+          });
           let headFilter = effectKit.createEffect(pixelMap);
           if (headFilter !== null) {
             headFilter.blur(PlayerConstants.IMAGE_BLUR);
             headFilter.getEffectPixelMap().then((value) => {
               this.imageLabel = value;
-            })
+            });
           }
         })
           .catch((error: BusinessError) => {
-            Logger.error(`${error.code} + ${error.message}`)
-          })
+            Logger.error(`${error.code} + ${error.message}`);
+          });
       })
       .catch((error: BusinessError) => {
-        Logger.error(`${error.code} + ${error.message}`)
-      })
+        Logger.error(`${error.code} + ${error.message}`);
+      });
   }
 }
