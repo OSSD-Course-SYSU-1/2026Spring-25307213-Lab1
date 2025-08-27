@@ -27,7 +27,7 @@ export class BackgroundUtil {
   public static startContinuousTask(context?: common.UIAbilityContext): void {
     if (!context) {
       Logger.error('this avPlayer: ', `context undefined`);
-      return;
+      return
     }
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [

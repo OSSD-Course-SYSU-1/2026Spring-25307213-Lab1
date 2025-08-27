@@ -37,7 +37,7 @@ export struct LiveList {
         Scroll(this.scroller) {
           Column() {
             ForEach(this.liveStreams, (item: LiveStream, index: number) => {
-              this.LiveItem(item, index);
+              this.LiveItem(item, index)
             }, (item: LiveStream, index: number) => index + JSON.stringify(item))
           }
           .width(LiveConstants.FULL_WIDTH_PERCENT)

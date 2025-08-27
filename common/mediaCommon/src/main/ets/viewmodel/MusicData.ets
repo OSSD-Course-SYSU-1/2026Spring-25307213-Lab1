@@ -36,4 +36,4 @@ enum AudioPlayerState {
   UNKNOWN
 }
 
-export { MusicPlayMode, AudioPlayerState };
+export { MusicPlayMode, AudioPlayerState }

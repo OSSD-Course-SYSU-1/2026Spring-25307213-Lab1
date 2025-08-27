@@ -198,7 +198,7 @@ export struct Player {
         this.topArea = this.getUIContext().px2vp(area.topRect.height);
         let bottomArea = windowStage.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
         this.bottomArea = this.getUIContext().px2vp(bottomArea.bottomRect.height);
-        Logger.info('bottomArea ' + this.bottomArea);
+        Logger.info('bottomArea ' + this.bottomArea)
         if (this.topArea > 0) {
           windowStage.setWindowLayoutFullScreen(true);
         }
@@ -207,7 +207,7 @@ export struct Player {
         };
         windowStage.setWindowSystemBarProperties(sysBarProps);
       }).catch((error: BusinessError) => {
-        Logger.error(`${error.code} + ${error.message}`);
+        Logger.error(`${error.code} + ${error.message}`)
       });
     })
     .onDisAppear(() => {
@@ -224,7 +224,7 @@ export struct Player {
         };
         windowStage.setWindowSystemBarProperties(sysBarProps);
       }).catch((error: BusinessError) => {
-        Logger.error(`${error.code} + ${error.message}`);
+        Logger.error(`${error.code} + ${error.message}`)
       });
     })
     .gesture(
