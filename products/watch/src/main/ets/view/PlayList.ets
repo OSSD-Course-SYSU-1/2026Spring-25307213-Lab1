@@ -58,7 +58,7 @@ export struct PlayList {
     NavDestination() {
       Column() {
         ArcSwiper(this.wearableSwiperController) {
-          ForEach(this.playList, (item: PlayListSheet, index: number) => {
+          ForEach(this.playList, (item: PlayListSheet) => {
             Column({ space: 10 }) {
               Row() {
                 Text(item.name)
@@ -89,6 +89,9 @@ export struct PlayList {
         }
         .index(0)
         .duration(400)
+        .focusable(true)
+        .focusOnTouch(true)
+        .defaultFocus(true)
         .vertical(true)
         .indicator(false)
         .disableSwipe(false)

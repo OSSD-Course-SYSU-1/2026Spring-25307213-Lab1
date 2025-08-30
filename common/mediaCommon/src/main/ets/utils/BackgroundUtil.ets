@@ -55,7 +55,9 @@ export class BackgroundUtil {
         Logger.error('this avPlayer: ',
           `startBackgroundRunning failed. code ${(error as BusinessError).code} message ${(error as BusinessError).message}`);
       }
-    });
+    }).catch((err: BusinessError) => {
+      Logger.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    })
   }
 
   /**

@@ -211,9 +211,13 @@ export class MediaService {
     if (!this.context) {
       return;
     }
-    this.session = await avSession.createAVSession(this.context, 'SESSION_NAME', 'audio');
-    this.session.activate();
-    Logger.info(TAG, `session create done : sessionId : ${this.session.sessionId}`);
+    try {
+      this.session = await avSession.createAVSession(this.context, 'SESSION_NAME', 'audio');
+      Logger.info(TAG, `session create done : sessionId : ${this.session.sessionId}`);
+      this.session.activate();
+    } catch (error) {
+      Logger.error(TAG, `${error.code} + ${error.message}`);
+    }
     this.setAVMetadata();
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [
@@ -230,7 +234,10 @@ export class MediaService {
       if (this.session) {
         this.session.setLaunchAbility(agent);
       }
-    });
+    })
+      .catch((err: BusinessError) => {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      });
     this.setListenerForMesFromController();
   }
 
@@ -238,20 +245,28 @@ export class MediaService {
     if (!this.session) {
       return;
     }
-    this.session.on('play', this.playCall);
-    this.session.on('pause', this.pauseCall);
-    this.session.on('playNext', this.playNextCall);
-    this.session.on('playPrevious', this.playPreviousCall);
+    try {
+      this.session.on('play', this.playCall);
+      this.session.on('pause', this.pauseCall);
+      this.session.on('playNext', this.playNextCall);
+      this.session.on('playPrevious', this.playPreviousCall);
+    } catch (error) {
+      Logger.error(TAG, `${error.code} + ${error.message}`);
+    }
   }
 
   async unregisterSessionListener() {
     if (!this.session) {
       return;
     }
-    this.session.off('play');
-    this.session.off('pause');
-    this.session.off('playNext');
-    this.session.off('playPrevious');
+    try {
+      this.session.off('play');
+      this.session.off('pause');
+      this.session.off('playNext');
+      this.session.off('playPrevious');
+    } catch (error) {
+      Logger.error(TAG, `${error.code} + ${error.message}`);
+    }
   }
 
   async setAVMetadata() {
@@ -401,12 +416,16 @@ export class MediaService {
     if (!this.isPrepared) {
       this.start(0);
     } else if (this.avPlayer) {
-      this.avPlayer.play().then(() => {
-        Logger.info(TAG, 'progressTime play() current time:' + this.getCurrentTime());
-        this.seek(this.getCurrentTime());
-        this.updateIsPlay(true);
-        this.state = AudioPlayerState.PLAY;
-      });
+      try {
+        this.avPlayer.play().then(() => {
+          Logger.info(TAG, 'progressTime play() current time:' + this.getCurrentTime());
+          this.seek(this.getCurrentTime());
+          this.updateIsPlay(true);
+          this.state = AudioPlayerState.PLAY;
+        });
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
   }
 
@@ -422,7 +441,9 @@ export class MediaService {
         if (this.context) {
           BackgroundUtil.stopContinuousTask(this.context);
         }
-      });
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'Failed to pause,error message is :' + err.message);
+      })
     }
   }
 
@@ -438,7 +459,11 @@ export class MediaService {
         if (isFromControl) {
           this.playNext();
         } else if (this.avPlayer) {
-          this.avPlayer.play();
+          try {
+            this.avPlayer.play();
+          } catch (error) {
+            Logger.error(TAG, `${error.code} + ${error.message}`);
+          }
         }
         break;
       case MusicPlayMode.ORDER:
@@ -501,11 +526,15 @@ export class MediaService {
   public async stop() {
     Logger.info(TAG, 'stop()');
     if (this.isPrepared && this.avPlayer) {
-      await this.avPlayer.stop();
-      this.updateIsPlay(false);
-      this.state = AudioPlayerState.PAUSE;
-      if (this.context) {
-        BackgroundUtil.stopContinuousTask(this.context);
+      try {
+        await this.avPlayer.stop();
+        this.updateIsPlay(false);
+        this.state = AudioPlayerState.PAUSE;
+        if (this.context) {
+          BackgroundUtil.stopContinuousTask(this.context);
+        }
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
       }
     }
   }
@@ -514,7 +543,11 @@ export class MediaService {
     Logger.info(TAG, 'reset()');
     await this.songItemBuilder.release();
     if (this.avPlayer) {
-      await this.avPlayer.reset();
+      try {
+        await this.avPlayer.reset();
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
     this.isPrepared = false;
   }
@@ -524,20 +557,24 @@ export class MediaService {
    */
   public release() {
     if (this.avPlayer && this.session && this.context) {
-      this.updateIsPlay(false);
-      this.stop();
-      this.reset();
-      this.avPlayer.release();
-      this.state = AudioPlayerState.IDLE;
-      BackgroundUtil.stopContinuousTask(this.context);
-      this.unregisterSessionListener();
-      this.session.destroy((err: BusinessError) => {
-        if (err) {
-          Logger.error(TAG, `Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
-        } else {
-          Logger.info(TAG, `Destroy : SUCCESS `);
-        }
-      });
+      try {
+        this.updateIsPlay(false);
+        this.stop();
+        this.reset();
+        this.avPlayer.release();
+        this.state = AudioPlayerState.IDLE;
+        BackgroundUtil.stopContinuousTask(this.context);
+        this.unregisterSessionListener();
+        this.session.destroy((err: BusinessError) => {
+          if (err) {
+            Logger.error(TAG, `Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+          } else {
+            Logger.info(TAG, `Destroy : SUCCESS `);
+          }
+        });
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
   }
 
@@ -632,7 +669,11 @@ export class MediaService {
     };
     let formInfo = formBindingData.createFormBindingData(formData);
     for (let index = 0; index < this.formIds.length; index++) {
-      await formProvider.updateForm(this.formIds[index], formInfo);
+      try {
+        await formProvider.updateForm(this.formIds[index], formInfo);
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
   }
 }

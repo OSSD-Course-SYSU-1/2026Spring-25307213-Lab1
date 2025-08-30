@@ -26,6 +26,8 @@ import { ControlAreaComponent } from './ControlAreaComponent';
 import { TopAreaComponent } from './TopAreaComponent';
 import { PlayerConstants } from '../constants/PlayerConstants';
 
+const TAG = 'MusicControlComponent';
+
 @Preview
 @Component
 export struct MusicControlComponent {
@@ -72,7 +74,11 @@ export struct MusicControlComponent {
 
   aboutToDisappear(): void {
     if (canIUse('SystemCapability.Window.SessionManager')) {
-      display.off('foldDisplayModeChange', this.callback);
+      try {
+        display.off('foldDisplayModeChange', this.callback);
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
   }
 

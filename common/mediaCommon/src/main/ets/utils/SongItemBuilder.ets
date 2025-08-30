@@ -49,7 +49,11 @@ export default class SongItemBuilder {
 
   public async release(): Promise<void> {
     if (this.context && this.context !== null && this.songItem !== null) {
-      this.context.resourceManager.closeRawFd(this.songItem.src);
+      try {
+        this.context.resourceManager.closeRawFd(this.songItem.src);
+      } catch (error) {
+        Logger.error('Failed to closeRawFd');
+      }
     }
     this.songItem = null;
   }
