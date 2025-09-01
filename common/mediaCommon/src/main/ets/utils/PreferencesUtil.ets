@@ -85,7 +85,9 @@ export class PreferencesUtil {
   }
 
   removePreferencesFromCache(context: Context): void {
-    preferences.removePreferencesFromCache(context, MY_STORE);
+    preferences.removePreferencesFromCache(context, MY_STORE).catch((err: BusinessError) => {
+      console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+    })
   }
 
   async getFormIds(context: Context): Promise<Array<string>> {

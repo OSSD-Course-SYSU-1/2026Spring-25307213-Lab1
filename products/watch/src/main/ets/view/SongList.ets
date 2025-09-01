@@ -38,7 +38,7 @@ struct SongList {
     NavDestination() {
       Column() {
         ArcList({ initialIndex: 0 }) {
-          ForEach(this.songList, (item: SongItem) => {
+          ForEach(this.songList, (item: SongItem, index:number) => {
             ArcListItem() {
               Row() {
                 Image(item.label)

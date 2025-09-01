@@ -21,6 +21,49 @@ The figure shows the effect on the wearable.
 <img src="./screenshots/device/wearable.png" width="320">
 
 
+## Engineering catalogue
+```
+├──commons                                    // Public Competency Layer
+│  ├──constantsCommon/src/main/ets            // Public Constants
+│  │  └──constants
+│  └──mediaCommon/src/main/ets                // Public media approach
+│     └──utils
+│     └──viewmodel
+├──features                                   // Basic Feature Layer
+│  ├──live/src/main/ets                       // Live Stream Page
+│  │  ├──constants
+│  │  ├──view
+│  │  └──viewmodel
+│  ├──live/src/main/resources                 // Resource file directory
+│  ├──musicComment/src/main/ets               // Music Review Page
+│  │  ├──constants
+│  │  ├──view
+│  │  └──viewmodel
+│  ├──musicComment/src/main/resources         // Resource file directory
+│  ├──musicList/src/main/ets                  // Song List Page
+│  │  ├──components
+│  │  ├──constants
+│  │  ├──lyric
+│  │  ├──view
+│  │  └──viewmodel
+│  └──musicList/src/main/resources            // Resource file directory
+├──products                                   // Product Customization Layer
+│  ├──phone/src/main/ets                      // Supports smartphones, foldable screens, tablets, and PCs/2in1 devices
+│  │  ├──common
+│  │  ├──entryability
+│  │  ├──pages
+│  │  ├──phonebackupextability
+│  │  └──viewmodel
+│  ├──phone/src/main/ets                      // Resource file directory
+│  ├──watch/src/main/resources                // Support for smart wearables
+│  │  ├──constants                      
+│  │  ├──pages
+│  │  ├──view
+│  │  ├──watchability
+│  │  └──watchbackupability
+│  └──watch/src/main/ets                      // Resource file directory
+```
+
 ## How to Use
 
 1. Install and open an app on a mobile phone, foldable phone, or tablet. The responsive layout and adaptive layout are used to display different effects on the app pages over different devices.

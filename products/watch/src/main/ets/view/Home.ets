@@ -82,8 +82,6 @@ export struct Home {
             .padding({ left: $r('app.float.list_btn_padding'), right: $r('app.float.list_btn_padding') })
             .justifyContent(FlexAlign.SpaceBetween)
             .borderRadius(StyleConstants.CIRCLE_BORDER_RADIUS)
-            .focusable(true)
-            .focusOnTouch(true)
             .backgroundColor($r('app.color.home_btn_background'))
             .onClick(() => {
               if (item.pathName === 'setting') {

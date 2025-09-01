@@ -20,6 +20,48 @@
 
 <img src="./screenshots/device/wearable.png" width="320">
 
+## 工程目录
+```
+├──commons                                    // 公共能力层
+│  ├──constantsCommon/src/main/ets            // 公共常量
+│  │  └──constants
+│  └──mediaCommon/src/main/ets                // 公共媒体方法
+│     └──utils
+│     └──viewmodel
+├──features                                   // 基础特性层
+│  ├──live/src/main/ets                       // 直播页
+│  │  ├──constants
+│  │  ├──view
+│  │  └──viewmodel
+│  ├──live/src/main/resources                 // 资源文件目录
+│  ├──musicComment/src/main/ets               // 音乐评论页
+│  │  ├──constants
+│  │  ├──view
+│  │  └──viewmodel
+│  ├──musicComment/src/main/resources         // 资源文件目录
+│  ├──musicList/src/main/ets                  // 歌曲列表页
+│  │  ├──components
+│  │  ├──constants
+│  │  ├──lyric
+│  │  ├──view
+│  │  └──viewmodel
+│  └──musicList/src/main/resources            // 资源文件目录
+├──products                                   // 产品定制层
+│  ├──phone/src/main/ets                      // 支持手机、折叠屏、平板、PC/2in1
+│  │  ├──common
+│  │  ├──entryability
+│  │  ├──pages
+│  │  ├──phonebackupextability
+│  │  └──viewmodel
+│  ├──phone/src/main/ets                      // 资源文件目录
+│  ├──watch/src/main/resources                // 支持智能穿戴
+│  │  ├──constants                      
+│  │  ├──pages
+│  │  ├──view
+│  │  ├──watchability
+│  │  └──watchbackupability
+│  └──watch/src/main/ets                      // 资源文件目录
+```
 
 ## 使用说明
 

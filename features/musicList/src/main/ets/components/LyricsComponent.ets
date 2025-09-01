@@ -15,7 +15,7 @@
 
 import { common } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
-import { BreakpointType, SongItem } from '@ohos/mediaCommon';
+import { BreakpointType, Logger, SongItem } from '@ohos/mediaCommon';
 import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
 import { LrcEntry } from '../lyric/LrcEntry';
 import { parseKrcLyric, parseLrcLyric } from '../lyric/LrcUtils';
@@ -24,6 +24,8 @@ import { LyricScrollEffect, LyricTopPosition } from '../lyric/LyricConst';
 import { ControlAreaComponent } from './ControlAreaComponent';
 import { LyricFile } from '../lyric/LyricConst';
 import { PlayerConstants } from '../constants/PlayerConstants';
+
+const TAG = 'LyricsComponent';
 
 @Component
 export struct LyricsComponent {
@@ -52,16 +54,20 @@ export struct LyricsComponent {
     if (!this.context) {
       return;
     }
-    this.context .resourceManager .getRawFileContent(this.songList[this.selectIndex].lyric)
-      .then((value: Uint8Array) => {
-        let textDecoder = util.TextDecoder.create(PlayerConstants.ENCODING, { ignoreBOM: true });
-        let stringData = textDecoder.decodeToString(value, { stream: false });
-        if (this.songList[this.selectIndex].lyric.endsWith(LyricFile.KRC)) {
-          this.mLrcEntryList = parseKrcLyric(stringData);
-        } else if (this.songList[this.selectIndex].lyric.endsWith(LyricFile.LRC)) {
-          this.mLrcEntryList = parseLrcLyric(stringData);
-        }
-      });
+    try {
+      this.context.resourceManager.getRawFileContent(this.songList[this.selectIndex].lyric)
+        .then((value: Uint8Array) => {
+          let textDecoder = util.TextDecoder.create(PlayerConstants.ENCODING, { ignoreBOM: true });
+          let stringData = textDecoder.decodeToString(value, { stream: false });
+          if (this.songList[this.selectIndex].lyric.endsWith(LyricFile.KRC)) {
+            this.mLrcEntryList = parseKrcLyric(stringData);
+          } else if (this.songList[this.selectIndex].lyric.endsWith(LyricFile.LRC)) {
+            this.mLrcEntryList = parseLrcLyric(stringData);
+          }
+        });
+    } catch (error) {
+      Logger.error(TAG, `${error.code} + ${error.message}`);
+    }
   }
 
   build() {

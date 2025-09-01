@@ -33,13 +33,17 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.getMainWindow().then((data: window.Window) => {
-      this.windowObj = data;
-      this.updateBreakpoint(this.windowObj.getWindowProperties().windowRect.width);
-      this.windowObj.on('windowSizeChange', (windowSize: window.Size) => {
-        this.updateBreakpoint(windowSize.width);
+    try {
+      windowStage.getMainWindow().then((data: window.Window) => {
+        this.windowObj = data;
+        this.updateBreakpoint(this.windowObj.getWindowProperties().windowRect.width);
+        this.windowObj.on('windowSizeChange', (windowSize: window.Size) => {
+          this.updateBreakpoint(windowSize.width);
+        });
       });
-    });
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'Failed to getMainWindow');
+    }
 
     windowStage.loadContent('pages/Index', (err) => {
       AppStorage.setOrCreate('uiContext', windowStage.getMainWindowSync().getUIContext());
@@ -52,16 +56,20 @@ export default class EntryAbility extends UIAbility {
   }
 
   private updateBreakpoint(windowWidth: number): void{
-    let windowWidthVp = windowWidth / display.getDefaultDisplaySync().densityPixels;
-    let curBp: string = '';
-    if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[1]) {
-      curBp = BreakpointConstants.BREAKPOINT_SM;
-    } else if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[2]) {
-      curBp = BreakpointConstants.BREAKPOINT_MD;
-    } else {
-      curBp = BreakpointConstants.BREAKPOINT_LG;
+    try {
+      let windowWidthVp = windowWidth / display.getDefaultDisplaySync().densityPixels;
+      let curBp: string = '';
+      if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[1]) {
+        curBp = BreakpointConstants.BREAKPOINT_SM;
+      } else if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[2]) {
+        curBp = BreakpointConstants.BREAKPOINT_MD;
+      } else {
+        curBp = BreakpointConstants.BREAKPOINT_LG;
+      }
+      AppStorage.setOrCreate('currentBreakpoint', curBp);
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'Failed to updateBreakpoint. Cause: %{public}s', JSON.stringify(error) ?? '');
     }
-    AppStorage.setOrCreate('currentBreakpoint', curBp);
   }
 
   onWindowStageDestroy() {
