@@ -53,14 +53,14 @@
 │  │  ├──pages
 │  │  ├──phonebackupextability
 │  │  └──viewmodel
-│  ├──phone/src/main/ets                      // 资源文件目录
-│  ├──watch/src/main/resources                // 支持智能穿戴
+│  ├──phone/src/main/resources                // 资源文件目录
+│  ├──watch/src/main/ets                      // 支持智能穿戴
 │  │  ├──constants                      
 │  │  ├──pages
 │  │  ├──view
 │  │  ├──watchability
 │  │  └──watchbackupability
-│  └──watch/src/main/ets                      // 资源文件目录
+│  └──watch/src/main/resources                // 资源文件目录
 ```
 
 ## 使用说明

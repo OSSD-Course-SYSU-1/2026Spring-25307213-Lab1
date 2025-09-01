@@ -54,14 +54,14 @@ The figure shows the effect on the wearable.
 │  │  ├──pages
 │  │  ├──phonebackupextability
 │  │  └──viewmodel
-│  ├──phone/src/main/ets                      // Resource file directory
-│  ├──watch/src/main/resources                // Support for smart wearables
+│  ├──phone/src/main/resources                // Resource file directory
+│  ├──watch/src/main/ets                      // Support for smart wearables
 │  │  ├──constants                      
 │  │  ├──pages
 │  │  ├──view
 │  │  ├──watchability
 │  │  └──watchbackupability
-│  └──watch/src/main/ets                      // Resource file directory
+│  └──watch/src/main/resources                // Resource file directory
 ```
 
 ## How to Use
