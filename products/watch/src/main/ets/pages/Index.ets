@@ -15,7 +15,7 @@
 
 import {
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // The properties of ArcSwiper depend on the ArcSwiperAttribute object for import.
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
@@ -26,7 +26,6 @@ import { MediaService } from '@ohos/mediaCommon';
 import { songList } from 'musicList';
 import { StyleConstants } from '../constants/StyleConstants';
 
-@Preview
 @Entry
 @Component
 struct Index {

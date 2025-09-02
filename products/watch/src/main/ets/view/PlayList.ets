@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 
-import { ArcSwiper, ArcSwiperAttribute, ArcSwiperController } from '@kit.ArkUI';
+import {
+  ArcSwiper,
+  ArcSwiperAttribute, // The properties of ArcSwiper depend on the ArcSwiperAttribute object for import.
+  ArcSwiperController
+} from '@kit.ArkUI';
 import { StyleConstants } from '../constants/StyleConstants';
 
 @Builder

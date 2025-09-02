@@ -48,21 +48,21 @@ The figure shows the effect on the wearable.
 │  │  ├──view
 │  │  └──viewmodel
 │  └──musicList/src/main/resources            // Resource file directory
-├──products                                   // Product Customization Layer
-│  ├──phone/src/main/ets                      // Supports smartphones, foldable screens, tablets, and PCs/2in1 devices
-│  │  ├──common
-│  │  ├──entryability
-│  │  ├──pages
-│  │  ├──phonebackupextability
-│  │  └──viewmodel
-│  ├──phone/src/main/resources                // Resource file directory
-│  ├──watch/src/main/ets                      // Support for smart wearables
-│  │  ├──constants                      
-│  │  ├──pages
-│  │  ├──view
-│  │  ├──watchability
-│  │  └──watchbackupability
-│  └──watch/src/main/resources                // Resource file directory
+└──products                                   // Product Customization Layer
+   ├──phone/src/main/ets                      // Supports smartphones, foldable screens, tablets, and PCs/2in1 devices
+   │  ├──common
+   │  ├──entryability
+   │  ├──pages
+   │  ├──phonebackupextability
+   │  └──viewmodel
+   ├──phone/src/main/resources                // Resource file directory
+   ├──watch/src/main/ets                      // Support for smart wearables
+   │  ├──constants                      
+   │  ├──pages
+   │  ├──view
+   │  ├──watchability
+   │  └──watchbackupability
+   └──watch/src/main/resources                // Resource file directory
 ```
 
 ## How to Use

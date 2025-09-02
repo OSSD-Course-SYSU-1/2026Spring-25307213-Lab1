@@ -14,7 +14,11 @@
  */
 
 import { LengthMetrics } from '@kit.ArkUI';
-import { ArcList, ArcListItem, ArcListAttribute } from '@kit.ArkUI';
+import {
+  ArcList,
+  ArcListItem,
+  ArcListAttribute // The properties of ArcList depend on the ArcListAttribute object for import.
+} from '@kit.ArkUI';
 import { StyleConstants } from '../constants/StyleConstants';
 
 class Menu {
@@ -90,8 +94,7 @@ export struct Home {
               this.pageStack.replacePathByName(item.pathName, null);
             })
           }
-        },
-          (item: Menu, index: number) => JSON.stringify(item) + index)
+        }, (item: Menu, index: number) => JSON.stringify(item) + index)
       }
       .scrollBar(BarState.Off)
       .space(LengthMetrics.vp(5))
