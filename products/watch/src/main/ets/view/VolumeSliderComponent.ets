@@ -67,7 +67,7 @@ export struct VolumeSlider {
     try {
       MediaService.getInstance().avPlayer?.setVolume(progress / 100);
     } catch (error) {
-      hilog.error(0x0000, 'volumeSlider', "ArcSlider setVolume failed", (error as BusinessError).code);
+      hilog.error(0x0000, 'volumeSlider', 'ArcSlider setVolume failed', (error as BusinessError).code);
     }
   }
 

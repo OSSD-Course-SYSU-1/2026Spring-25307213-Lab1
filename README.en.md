@@ -4,6 +4,7 @@
 
 This codelab implements music album pages based on the adaptive layout and responsive layout, achieving one-time development for multi-device deployment.
 
+## Effect Preview
 The figure shows the effect on the mobile phone.
 
 ![](screenshots/device/phone.en.png)
@@ -71,6 +72,12 @@ The figure shows the effect on the wearable.
 3. Tap the blank area in the playback control area or a song in the list to go to the playback screen.
 4. Tap the comment button on the page to go to the corresponding comment page.
 5. Other buttons do not have actual tap events or functions.
+
+## Specific Implementation
+1. Use grid layout to monitor breakpoint changes and achieve differentiated display at various breakpoints.
+2. Switch between areas using the Tabs component or the Swiper component.
+3. Use the Blank component to achieve adaptive stretching of the middle space.
+4. Smart wearable devices set borderRadius to achieve a circular watch face.
 
 ## Permissions
 
