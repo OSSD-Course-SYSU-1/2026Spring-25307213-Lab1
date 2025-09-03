@@ -14,7 +14,7 @@
  */
 
 import { Animator, AnimatorResult } from '@kit.ArkUI';
-import { Logger } from '@ohos/mediaCommon';
+import { Logger } from 'mediacommon';
 import { LrcEntry } from './LrcEntry';
 import { angleToRadian } from './LrcUtils';
 import { Rectangle, LyricTopPosition, LyricScrollEffect } from './LyricConst';

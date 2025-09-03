@@ -15,7 +15,8 @@
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { display, window } from '@kit.ArkUI';
-import { BreakpointConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants } from 'constantscommon';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   private windowObj?: window.Window;
@@ -38,7 +39,23 @@ export default class EntryAbility extends UIAbility {
       this.updateBreakpoint(this.windowObj.getWindowProperties().windowRect.width);
       this.windowObj.on('windowSizeChange', (windowSize: window.Size) => {
         this.updateBreakpoint(windowSize.width);
-      })
+      });
+      data.setWindowLayoutFullScreen(true).then(() => {
+        hilog.info(0x0000, 'EntryAbility', 'Succeeded in setting the window layout to full-screen mode.');
+      }).catch((err: BusinessError) => {
+        hilog.info(0x0000, 'EntryAbility',
+          `Failed to set the window layout to full-screen mode. Cause: code=${err.code}, message=${err.message}`);
+      });
+
+      let type = window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR;
+      let avoidArea = data.getWindowAvoidArea(type);
+      let bottomRectHeight = avoidArea.bottomRect.height;
+      AppStorage.setOrCreate('bottomRectHeight', bottomRectHeight);
+
+      type = window.AvoidAreaType.TYPE_SYSTEM;
+      avoidArea = data.getWindowAvoidArea(type);
+      let topRectHeight = avoidArea.topRect.height;
+      AppStorage.setOrCreate('topRectHeight', topRectHeight);
     })
 
     windowStage.loadContent('pages/Index', (err) => {

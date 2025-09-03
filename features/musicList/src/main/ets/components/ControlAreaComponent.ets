@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { BreakpointType, MediaService } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { BreakpointType, MediaService } from 'mediacommon';
 import { PlayerConstants } from '../constants/PlayerConstants';
 
 @Preview

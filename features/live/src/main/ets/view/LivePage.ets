@@ -19,6 +19,8 @@ import { LiveConstants} from '../constants/LiveConstants';
 
 @Component
 export struct LivePage {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
+
   build() {
     Column() {
       Header()
@@ -26,5 +28,6 @@ export struct LivePage {
     }
     .width(LiveConstants.FULL_WIDTH_PERCENT)
     .height(LiveConstants.FULL_HEIGHT_PERCENT)
+    .padding({ top: this.getUIContext().px2vp(this.topRectHeight) })
   }
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { StyleConstants, BreakpointConstants } from '@ohos/constantsCommon';
+import { StyleConstants, BreakpointConstants } from 'constantscommon';
 import { Comment } from '../viewmodel/Comment';
 import CommentViewModel from '../viewmodel/CommentViewModel';
 import { ListItemComponent } from './ListItemComponent';
@@ -26,8 +26,11 @@ export struct MusicCommentPage {
   @StorageProp('currentBreakpoint') currentBp: string = BreakpointConstants.BREAKPOINT_SM;
   @State wonderfulComment: Comment[] = CommentViewModel.getWonderfulReview();
   @State newComment: Comment[] = CommentViewModel.getNewComment();
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
+  @StorageLink('bottomRectHeight') bottomRectHeight: number = 0;
 
-  @Builder ShowTitle(title: ResourceStr) {
+  @Builder
+  ShowTitle(title: ResourceStr) {
     Row() {
       Text(title)
         .fontSize($r('app.float.comment_title_size'))
@@ -38,9 +41,9 @@ export struct MusicCommentPage {
           top: $r('app.float.title_margin_top'),
           bottom: $r('app.float.title_margin_bottom'),
           left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-          $r('app.float.margin_left_sm') : $r('app.float.margin_left'),
+            $r('app.float.margin_left_sm') : $r('app.float.margin_left'),
           right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-          $r('app.float.margin_right_sm') : $r('app.float.margin_right')
+            $r('app.float.margin_right_sm') : $r('app.float.margin_right')
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -128,21 +131,21 @@ export struct MusicCommentPage {
             color: $r('app.color.list_divider'),
             strokeWidth: $r('app.float.stroke_width'),
             startMargin: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-            $r('app.float.start_margin') : $r('app.float.start_margin_lg'),
+              $r('app.float.start_margin') : $r('app.float.start_margin_lg'),
             endMargin: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
               0 : $r('app.float.divider_margin_left')
           })
           .margin({
             left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-            $r('app.float.margin_left_sm') : $r('app.float.margin_left_list'),
+              $r('app.float.margin_left_sm') : $r('app.float.margin_left_list'),
             right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-            $r('app.float.margin_right_sm') : $r('app.float.margin_right_list')
+              $r('app.float.margin_right_sm') : $r('app.float.margin_right_list')
           })
 
           this.ShowTitle($r('app.string.new_comment'))
 
           List() {
-            ForEach(this.newComment, (comment: Comment) => {
+            ForEach(this.newComment, (comment: Comment, index: number) => {
               ListItem() {
                 ListItemComponent({ item: comment })
                   .margin({
@@ -154,7 +157,8 @@ export struct MusicCommentPage {
               }
               .width(StyleConstants.FULL_WIDTH)
               .padding({
-                bottom: $r('app.float.padding_bottom')
+                bottom: index === this.newComment.length - 1 ? this.getUIContext().px2vp(this.bottomRectHeight) :
+                  $r('app.float.padding_bottom')
               })
             }, (item: Comment, index?: number) => index + JSON.stringify(item))
           }
@@ -163,15 +167,15 @@ export struct MusicCommentPage {
           .scrollBar(BarState.Off)
           .margin({
             left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-            $r('app.float.margin_left_sm') : $r('app.float.margin_left_list'),
+              $r('app.float.margin_left_sm') : $r('app.float.margin_left_list'),
             right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-            $r('app.float.margin_right_sm') : $r('app.float.margin_right_list')
+              $r('app.float.margin_right_sm') : $r('app.float.margin_right_list')
           })
           .divider({
             color: $r('app.color.list_divider'),
             strokeWidth: $r('app.float.stroke_width'),
             startMargin: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-            $r('app.float.start_margin') : $r('app.float.start_margin_lg'),
+              $r('app.float.start_margin') : $r('app.float.start_margin_lg'),
             endMargin: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
               0 : $r('app.float.divider_margin_left')
           })
@@ -180,5 +184,6 @@ export struct MusicCommentPage {
       }
     }
     .backgroundColor(Color.White)
+    .padding({ top: this.getUIContext().px2vp(this.topRectHeight) })
   }
 }

@@ -14,7 +14,7 @@
  */
 
 import { util } from '@kit.ArkTS';
-import { Logger } from '@ohos/mediaCommon';
+import { Logger } from 'mediacommon';
 import { LrcEntry, Word } from './LrcEntry';
 
 /**

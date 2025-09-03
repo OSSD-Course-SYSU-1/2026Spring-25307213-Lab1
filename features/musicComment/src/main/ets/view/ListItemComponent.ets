@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { StyleConstants } from '@ohos/constantsCommon';
+import { StyleConstants } from 'constantscommon';
 import { Comment } from '../viewmodel/Comment';
 import { CommonConstants } from '../constants/CommonConstants';
 

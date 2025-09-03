@@ -14,7 +14,7 @@
  */
 
 import { mediaquery } from '@kit.ArkUI';
-import { BreakpointConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants } from 'constantscommon';
 
 declare interface BreakPointTypeOption<T> {
   sm?: T,

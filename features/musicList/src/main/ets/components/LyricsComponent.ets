@@ -15,8 +15,8 @@
 
 import { common } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
-import { BreakpointType, SongItem } from '@ohos/mediaCommon';
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
+import { BreakpointType, SongItem } from 'mediacommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
 import { LrcEntry } from '../lyric/LrcEntry';
 import { parseKrcLyric, parseLrcLyric } from '../lyric/LrcUtils';
 import LrcView from '../lyric/LrcView';

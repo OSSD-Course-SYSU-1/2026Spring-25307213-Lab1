@@ -20,7 +20,7 @@ import { formProvider } from '@kit.FormKit';
 import { formBindingData } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { resourceManager } from '@kit.LocalizationKit';
-import { SongConstants } from '@ohos/constantsCommon';
+import { SongConstants } from 'constantscommon';
 import SongItemBuilder from './SongItemBuilder';
 import { AudioPlayerState, MusicPlayMode } from '../viewmodel/MusicData';
 import { SongItem } from '../viewmodel/SongData';
