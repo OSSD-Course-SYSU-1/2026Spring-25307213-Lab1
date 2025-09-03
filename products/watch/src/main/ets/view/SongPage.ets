@@ -42,6 +42,7 @@ struct SongPage {
 
   build() {
     NavDestination() {
+      // [Start song_page]
       Column() {
         Column() {
           Text(this.songList[this.selectIndex].title)
@@ -56,10 +57,12 @@ struct SongPage {
             Image($r('app.media.previous_btn'))
               .width($r('app.float.play_song_img'))
           }
+          // [StartExclude song_page]
           .onClick(() => {
             MediaService.getInstance().playPrevious();
           })
 
+          // [EndExclude song_page]
           Stack() {
             Image(this.songList[this.selectIndex].label)
               .width($r('app.float.play_circle_img'))
@@ -74,20 +77,24 @@ struct SongPage {
             Image($r('app.media.play_btn'))
               .width($r('app.float.play_song_img'))
               .visibility(this.isPlay === true ? Visibility.None : Visibility.Visible)
+              // [StartExclude song_page]
               .onClick(() => {
                 if (MediaService.getInstance().getFirst()) {
                   MediaService.getInstance().loadAssent(0);
                 } else {
-                  this.isPlay ? MediaService.getInstance().pause() : MediaService.getInstance().play();
+                    this.isPlay ? MediaService.getInstance().pause() : MediaService.getInstance().play();
                 }
               })
+            // [EndExclude song_page]
 
             Image($r('app.media.pause_btn'))
               .width($r('app.float.play_song_img'))
               .visibility(this.isPlay === true ? Visibility.Visible : Visibility.None)
+              // [StartExclude song_page]
               .onClick(() => {
                 MediaService.getInstance().pause();
               })
+            // [EndExclude song_page]
           }
           .width(this.HALF_WIDTH)
           .align(Alignment.Center)
@@ -96,9 +103,12 @@ struct SongPage {
             Image($r('app.media.next_btn'))
               .width($r('app.float.play_song_img'))
           }
+          // [StartExclude song_page]
           .onClick(() => {
             MediaService.getInstance().playNextAuto(true);
           })
+
+          // [EndExclude song_page]
         }
         .justifyContent(FlexAlign.SpaceAround)
         .width('85%')
@@ -119,6 +129,7 @@ struct SongPage {
       .padding({ top: $r('app.float.play_column_padding'), bottom: $r('app.float.play_column_padding') })
       .justifyContent(FlexAlign.SpaceAround)
 
+      // [End song_page]
       VolumeSlider()
     }
     .hideTitleBar(true)

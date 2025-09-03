@@ -60,6 +60,7 @@ export struct PlayList {
 
   build() {
     NavDestination() {
+      // [Start play_list]
       Column() {
         ArcSwiper(this.wearableSwiperController) {
           ForEach(this.playList, (item: PlayListSheet) => {
@@ -86,9 +87,12 @@ export struct PlayList {
             .backgroundImageSize({ width: StyleConstants.FULL_WIDTH, height: StyleConstants.FULL_HEIGHT })
             .justifyContent(FlexAlign.SpaceBetween)
             .padding({ top: $r('app.float.playlist_row_padding'), bottom: $r('app.float.playlist_row_padding') })
+            // [StartExclude play_list]
             .onClick(() => {
               this.pageStack.replacePathByName('songList', null);
             })
+
+            // [EndExclude play_list]
           }, (item: PlayListSheet, index?: number) => index + JSON.stringify(item))
         }
         .index(0)
@@ -98,6 +102,7 @@ export struct PlayList {
         .defaultFocus(true)
         .vertical(true)
         .indicator(false)
+        // [StartExclude play_list]
         .disableSwipe(false)
         .digitalCrownSensitivity(CrownSensitivity.MEDIUM)
         .disableTransitionAnimation(false)
@@ -122,9 +127,13 @@ export struct PlayList {
           }
           return GestureJudgeResult.CONTINUE;
         })
+
+        // [EndExclude play_list]
       }
       .width(StyleConstants.FULL_WIDTH)
       .height(StyleConstants.FULL_HEIGHT)
+
+      // [End play_list]
     }
     .hideTitleBar(true)
   }

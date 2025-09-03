@@ -72,6 +72,7 @@ export struct VolumeSlider {
   }
 
   build() {
+    // [Start volume_slider]
     Column() {
       ArcSlider({ options: this.arcSliderOptions })
         .focusable(true)
@@ -99,5 +100,7 @@ export struct VolumeSlider {
       top: 0,
       right: 0
     })
+
+    // [End volume_slider]
   }
 }
