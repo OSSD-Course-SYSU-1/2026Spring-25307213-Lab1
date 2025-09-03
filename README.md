@@ -4,6 +4,7 @@
 
 基于自适应和响应式布局，实现一次开发、多端部署音乐专辑。
 
+## 效果预览
 手机效果图如下：
 
 ![](screenshots/device/phone.png)
@@ -46,21 +47,21 @@
 │  │  ├──view
 │  │  └──viewmodel
 │  └──musicList/src/main/resources            // 资源文件目录
-├──products                                   // 产品定制层
-│  ├──phone/src/main/ets                      // 支持手机、折叠屏、平板、PC/2in1
-│  │  ├──common
-│  │  ├──entryability
-│  │  ├──pages
-│  │  ├──phonebackupextability
-│  │  └──viewmodel
-│  ├──phone/src/main/resources                // 资源文件目录
-│  ├──watch/src/main/ets                      // 支持智能穿戴
-│  │  ├──constants                      
-│  │  ├──pages
-│  │  ├──view
-│  │  ├──watchability
-│  │  └──watchbackupability
-│  └──watch/src/main/resources                // 资源文件目录
+└──products                                   // 产品定制层
+   ├──phone/src/main/ets                      // 支持手机、折叠屏、平板、PC/2in1
+   │  ├──common
+   │  ├──entryability
+   │  ├──pages
+   │  ├──phonebackupextability
+   │  └──viewmodel
+   ├──phone/src/main/resources                // 资源文件目录
+   ├──watch/src/main/ets                      // 支持智能穿戴
+   │  ├──constants                      
+   │  ├──pages
+   │  ├──view
+   │  ├──watchability
+   │  └──watchbackupability
+   └──watch/src/main/resources                // 资源文件目录
 ```
 
 ## 使用说明
@@ -70,6 +71,12 @@
 3. 点击界面上播放控制区空白处或列表歌曲跳转到播放页面。
 4. 点击界面上评论按钮跳转到对应的评论页面。
 5. 其他按钮无实际点击事件或功能。
+
+## 具体实现
+1. 使用栅格布局监听断点变化，实现不同断点下的差异显示。
+2. 通过Tabs组件或Swiper组件进行区域的切换。
+3. 使用Blank组件实现中间空格自适应拉伸。
+4. 智能穿戴设备设置borderRadius实现圆形表盘。
 
 ## 相关权限
 

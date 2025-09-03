@@ -14,7 +14,11 @@
  */
 
 import { LengthMetrics } from '@kit.ArkUI';
-import { ArcList, ArcListItem, ArcListAttribute } from '@kit.ArkUI';
+import {
+  ArcList,
+  ArcListItem,
+  ArcListAttribute // The properties of ArcList depend on the ArcListAttribute object for import.
+} from '@kit.ArkUI';
 import { StyleConstants } from '../constants/StyleConstants';
 
 class Menu {
@@ -58,6 +62,7 @@ export struct Home {
   ];
 
   build() {
+    // [Start home_list]
     Column() {
       ArcList({ initialIndex: 0 }) {
         ForEach(this.menuList, (item: Menu) => {
@@ -83,15 +88,17 @@ export struct Home {
             .justifyContent(FlexAlign.SpaceBetween)
             .borderRadius(StyleConstants.CIRCLE_BORDER_RADIUS)
             .backgroundColor($r('app.color.home_btn_background'))
+            // [StartExclude home_list]
             .onClick(() => {
               if (item.pathName === 'setting') {
                 return;
               }
               this.pageStack.replacePathByName(item.pathName, null);
             })
+
+            // [EndExclude home_list]
           }
-        },
-          (item: Menu, index: number) => JSON.stringify(item) + index)
+        }, (item: Menu, index: number) => JSON.stringify(item) + index)
       }
       .scrollBar(BarState.Off)
       .space(LengthMetrics.vp(5))
@@ -104,5 +111,7 @@ export struct Home {
     .width(StyleConstants.FULL_WIDTH)
     .height(StyleConstants.FULL_HEIGHT)
     .borderRadius(StyleConstants.CIRCLE_BORDER_RADIUS)
+
+    // [End home_list]
   }
 }

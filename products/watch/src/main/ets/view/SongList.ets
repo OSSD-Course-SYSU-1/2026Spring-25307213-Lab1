@@ -14,7 +14,12 @@
  */
 
 import { LengthMetrics } from '@kit.ArkUI';
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
+import {
+  ArcList,
+  ArcListItem,
+  ArcListAttribute, // The properties of ArcList depend on ArcListAttribute and ArcListItemAttribute objects for import.
+  ArcListItemAttribute
+} from '@kit.ArkUI';
 import { MediaService, SongItem } from '@ohos/mediaCommon';
 import { StyleConstants } from '../constants/StyleConstants';
 
@@ -36,9 +41,10 @@ struct SongList {
 
   build() {
     NavDestination() {
+      // [Start song_list]
       Column() {
         ArcList({ initialIndex: 0 }) {
-          ForEach(this.songList, (item: SongItem, index:number) => {
+          ForEach(this.songList, (item: SongItem, index: number) => {
             ArcListItem() {
               Row() {
                 Image(item.label)
@@ -64,10 +70,13 @@ struct SongList {
               .backgroundColor($r('app.color.home_btn_background'))
             }
             .align(Alignment.Center)
+            // [StartExclude song_list]
             .onClick(async () => {
               await MediaService.getInstance().loadAssent(index);
               this.pageStack.replacePathByName('songPage', null);
             })
+
+            // [EndExclude song_list]
           }, (item: SongItem, index: number) => JSON.stringify(item) + index)
         }
         .scrollBar(BarState.Off)
@@ -81,6 +90,8 @@ struct SongList {
       .width(StyleConstants.FULL_WIDTH)
       .height(StyleConstants.FULL_HEIGHT)
       .borderRadius(StyleConstants.CIRCLE_BORDER_RADIUS)
+
+      // [End song_list]
     }
     .hideTitleBar(true)
   }

@@ -15,7 +15,7 @@
 
 import {
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // The properties of ArcSwiper depend on the ArcSwiperAttribute object for import.
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
@@ -26,7 +26,6 @@ import { MediaService } from '@ohos/mediaCommon';
 import { songList } from 'musicList';
 import { StyleConstants } from '../constants/StyleConstants';
 
-@Preview
 @Entry
 @Component
 struct Index {
@@ -42,6 +41,7 @@ struct Index {
 
   build() {
     Navigation(this.pageStack) {
+      // [Start home_swiper]
       Column() {
         Row() {
           ArcSwiper(this.wearableSwiperController) {
@@ -53,6 +53,7 @@ struct Index {
             .arcDirection(ArcDirection.SIX_CLOCK_DIRECTION)
             .selectedItemColor('#FE1B48')
           )
+          // [StartExclude home_swiper]
           .onAnimationStart((index: number, targetIndex: number) => {
             this.innerSelectedIndex = targetIndex;
           })
@@ -74,10 +75,14 @@ struct Index {
             }
             return GestureJudgeResult.CONTINUE;
           })
+
+          // [EndExclude home_swiper]
         }
         .height(StyleConstants.FULL_HEIGHT)
       }
       .width(StyleConstants.FULL_WIDTH)
+
+      // [End home_swiper]
     }
     .hideTitleBar(true)
   }
