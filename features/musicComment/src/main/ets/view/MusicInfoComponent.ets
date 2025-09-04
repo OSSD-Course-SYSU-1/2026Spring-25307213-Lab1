@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { SongItem } from '@ohos/mediaCommon';
-import { StyleConstants } from '@ohos/constantsCommon';
+import { SongItem } from 'mediacommon';
+import { StyleConstants } from 'constantscommon';
 
 @Component
 export struct MusicInfoComponent {

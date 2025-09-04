@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { RouterUrlConstants } from '@ohos/constantsCommon';
-import { SongItem } from '@ohos/mediaCommon';
+import { RouterUrlConstants } from 'constantscommon';
+import { SongItem } from 'mediacommon';
 
 const songList: SongItem[] = [
   { id: 1, title: 'Dream It Possible', singer: 'Delacey', mark: $r('app.media.ic_vip'),

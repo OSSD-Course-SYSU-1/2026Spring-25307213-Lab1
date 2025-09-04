@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import  { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { MediaService, SongItem, BreakpointType } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { MediaService, SongItem, BreakpointType } from 'mediacommon';
 import { SongDataSource } from '../viewmodel/SongDataSource';
 import { ContentConstants } from '../constants/ContentConstants';
 
@@ -24,6 +24,7 @@ export struct PlayList {
   @Link currentBreakpoint: string;
   @StorageLink('songList') songList: SongItem[] = [];
   @StorageLink('isShowPlay') isShowPlay: boolean = false;
+  @StorageLink('bottomRectHeight') bottomRectHeight: number = 0;
 
   @Builder
   PlayAll() {
@@ -140,7 +141,7 @@ export struct PlayList {
     }
     .padding({
       top: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ? 0 : $r('app.float.list_area_padding_top'),
-      bottom: $r('app.float.list_area_padding_bottom')
+      bottom: 48 + this.getUIContext().px2vp(this.bottomRectHeight)
     })
   }
 }

@@ -15,7 +15,7 @@ The figure shows the effect on the foldable phone.
 
 The figure shows the effect on the tablet.
 
-![](screenshots/device/pad.en.png)
+![](screenshots/device/tablet.en.png)
 
 The figure shows the effect on the wearable.
 
@@ -73,19 +73,13 @@ The figure shows the effect on the wearable.
 4. Tap the comment button on the page to go to the corresponding comment page.
 5. Other buttons do not have actual tap events or functions.
 
-## Specific Implementation
-1. Use grid layout to monitor breakpoint changes and achieve differentiated display at various breakpoints.
-2. Switch between areas using the Tabs component or the Swiper component.
-3. Use the Blank component to achieve adaptive stretching of the middle space.
-4. Smart wearable devices set borderRadius to achieve a circular watch face.
-
-## Permissions
+### Permissions
 
 N/A
 
-## Constraints
+### Constraints
 
-1. The sample is only supported on standard systems and is compatible with the following devices: Huawei smartphones, tablets, PCs/2in1s, and smart wearables.
+1. The sample is only supported on Huawei phones, tablets and smart wearables with standard systems.
 2. HarmonyOS: HarmonyOS 5.1.0 Release or later.
 3. DevEco Studio: DevEco Studio 5.1.0 Release or later.
 4. HarmonyOS SDK: HarmonyOS 5.1.0 Release SDK or later.

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { BreakpointSystem, MediaService } from '@ohos/mediaCommon';
-import { StyleConstants, BreakpointConstants, SongConstants } from '@ohos/constantsCommon';
+import { BreakpointSystem, MediaService } from 'mediacommon';
+import { StyleConstants, BreakpointConstants, SongConstants } from 'constantscommon';
 import { Header } from '../components/Header';
 import { Player } from '../components/Player';
 import { Content } from '../components/ListContent';
@@ -25,6 +25,7 @@ export struct MusicListPage {
   private breakpointSystem: BreakpointSystem = new BreakpointSystem();
   @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
   @StorageLink('deviceHeight') deviceHeight: number = 0;
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
 
   aboutToAppear() {
     AppStorage.setOrCreate('songList', songList);
@@ -39,6 +40,8 @@ export struct MusicListPage {
   build() {
     Stack({ alignContent: Alignment.Top }) {
       Header()
+        .margin({ top: this.getUIContext().px2vp(this.topRectHeight) })
+        .zIndex(2)
       Content()
       Player()
     }

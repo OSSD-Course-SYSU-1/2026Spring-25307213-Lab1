@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { RouterUrlConstants } from '@ohos/constantsCommon';
+import { RouterUrlConstants } from 'constantscommon';
 import IndexItem from './IndexItem';
 
 /**
