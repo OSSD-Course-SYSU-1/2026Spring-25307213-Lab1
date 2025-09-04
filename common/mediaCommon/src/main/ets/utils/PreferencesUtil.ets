@@ -40,8 +40,8 @@ export class PreferencesUtil {
           return;
         }
         resolve(pref);
-      })
-    })
+      });
+    });
   }
 
   preferencesFlush(preferences: preferences.Preferences) {
@@ -49,7 +49,7 @@ export class PreferencesUtil {
       if (err) {
         Logger.error(TAG, `Failed to flush. Code:${err.code}, message:${err.message}`);
       }
-    })
+    });
   }
 
   preferencesPut(preferences: preferences.Preferences, formIds: Array<string>): Promise<boolean> {
@@ -63,7 +63,7 @@ export class PreferencesUtil {
           }
           Logger.info(TAG, `preferencesPut succeed,formIds: ${JSON.stringify(formIds)}`);
           resolve(true);
-        })
+        });
       } catch (error) {
         Logger.error(TAG, `Failed to put data. Code: ${(error as BusinessError).code},
         message:${(error as BusinessError).message}`);
@@ -81,11 +81,13 @@ export class PreferencesUtil {
         }
         resolve(value);
       });
-    })
+    });
   }
 
   removePreferencesFromCache(context: Context): void {
-    preferences.removePreferencesFromCache(context, MY_STORE);
+    preferences.removePreferencesFromCache(context, MY_STORE).catch((err: BusinessError) => {
+      console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+    })
   }
 
   async getFormIds(context: Context): Promise<Array<string>> {
@@ -104,13 +106,13 @@ export class PreferencesUtil {
           }
           resolve(value as Array<string>);
           Logger.info(TAG, `Succeeded in getting value of 'formIds'. val: ${value}.`);
-        })
-      })
+        });
+      });
     } catch (error) {
       Logger.error(TAG, `WANG Failed to get value of 'formIds'. Code:${(error as BusinessError).code},
        message:${(error as BusinessError).message}`);
     }
-    return new Promise((resolve, reject) => {})
+    return new Promise((resolve, reject) => {});
   }
 
   async addFormId(context: Context, formId: string) {

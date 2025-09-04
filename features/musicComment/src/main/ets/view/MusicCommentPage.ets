@@ -87,7 +87,7 @@ export struct MusicCommentPage {
                 $r('app.float.margin_right_sm') : $r('app.float.margin_right')
             })
 
-          this.ShowTitle($r('app.string.wonderful_comment'))
+          this.ShowTitle($r('app.string.wonderful_comment'));
 
           List() {
             ForEach(this.wonderfulComment, (comment: Comment, index?: number) => {
@@ -142,7 +142,7 @@ export struct MusicCommentPage {
               $r('app.float.margin_right_sm') : $r('app.float.margin_right_list')
           })
 
-          this.ShowTitle($r('app.string.new_comment'))
+          this.ShowTitle($r('app.string.new_comment'));
 
           List() {
             ForEach(this.newComment, (comment: Comment, index: number) => {

@@ -219,7 +219,7 @@ export struct Player {
         };
         windowStage.setWindowSystemBarProperties(sysBarProps);
       }).catch((error: BusinessError) => {
-        Logger.error(`${error.code} + ${error.message}`)
+        Logger.error(`${error.code} + ${error.message}`);
       });
     })
     .gesture(

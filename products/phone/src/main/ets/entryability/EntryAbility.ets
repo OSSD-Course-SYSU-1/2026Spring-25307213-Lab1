@@ -22,7 +22,7 @@ export default class EntryAbility extends UIAbility {
   private windowObj?: window.Window;
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    AppStorage.setOrCreate('context', this.context)
+    AppStorage.setOrCreate('context', this.context);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
@@ -56,6 +56,9 @@ export default class EntryAbility extends UIAbility {
       avoidArea = data.getWindowAvoidArea(type);
       let topRectHeight = avoidArea.topRect.height;
       AppStorage.setOrCreate('topRectHeight', topRectHeight);
+    }).catch((error: BusinessError) => {
+      hilog.error(0x0000, 'testTag', 'Failed to getMainWindow. Cause: ',
+        JSON.stringify(error.code) + JSON.stringify(error.message));
     })
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -69,16 +72,20 @@ export default class EntryAbility extends UIAbility {
   }
 
   private updateBreakpoint(windowWidth: number): void{
-    let windowWidthVp = windowWidth / display.getDefaultDisplaySync().densityPixels;
-    let curBp: string = '';
-    if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[1]) {
-      curBp = BreakpointConstants.BREAKPOINT_SM;
-    } else if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[2]) {
-      curBp = BreakpointConstants.BREAKPOINT_MD;
-    } else {
-      curBp = BreakpointConstants.BREAKPOINT_LG;
+    try {
+      let windowWidthVp = windowWidth / display.getDefaultDisplaySync().densityPixels;
+      let curBp: string = '';
+      if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[1]) {
+        curBp = BreakpointConstants.BREAKPOINT_SM;
+      } else if (windowWidthVp < BreakpointConstants.BREAKPOINT_VALUE_NUMBER[2]) {
+        curBp = BreakpointConstants.BREAKPOINT_MD;
+      } else {
+        curBp = BreakpointConstants.BREAKPOINT_LG;
+      }
+      AppStorage.setOrCreate('currentBreakpoint', curBp);
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'Failed to updateBreakpoint. Cause: %{public}s', JSON.stringify(error) ?? '');
     }
-    AppStorage.setOrCreate('currentBreakpoint', curBp);
   }
 
   onWindowStageDestroy() {

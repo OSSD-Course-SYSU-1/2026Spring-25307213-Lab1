@@ -60,17 +60,17 @@ export class BreakpointSystem {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint(BreakpointConstants.BREAKPOINT_SM);
     }
-  }
+  };
   private isBreakpointMD = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint(BreakpointConstants.BREAKPOINT_MD);
     }
-  }
+  };
   private isBreakpointLG = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint(BreakpointConstants.BREAKPOINT_LG);
     }
-  }
+  };
 
   public register(): void {
     this.smListener = uiContext?.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_SM);
