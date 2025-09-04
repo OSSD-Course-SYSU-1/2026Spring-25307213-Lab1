@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { SongItem } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { SongItem } from 'mediacommon';
 import { PlayerConstants } from '../constants/PlayerConstants';
 import { ControlAreaComponent } from './ControlAreaComponent';
 

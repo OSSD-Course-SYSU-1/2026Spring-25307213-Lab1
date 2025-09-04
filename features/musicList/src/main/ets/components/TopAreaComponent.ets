@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { BreakpointType } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { BreakpointType } from 'mediacommon';
 
 @Component
 export struct TopAreaComponent {

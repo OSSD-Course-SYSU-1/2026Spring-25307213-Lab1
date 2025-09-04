@@ -18,8 +18,8 @@ import { image } from '@kit.ImageKit';
 import { effectKit } from '@kit.ArkGraphics2D';
 import { common } from '@kit.AbilityKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { ColorConversion, Logger, SongItem } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { ColorConversion, Logger, SongItem } from 'mediacommon';
 import { LyricsComponent } from './LyricsComponent';
 import { MusicInfoComponent } from './MusicInfoComponent';
 import { ControlAreaComponent } from './ControlAreaComponent';
@@ -79,6 +79,7 @@ export struct MusicControlComponent {
       } catch (error) {
         Logger.error(TAG, `${error.code} + ${error.message}`);
       }
+      this.isFoldFull = false;
     }
   }
 

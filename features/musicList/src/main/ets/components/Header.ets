@@ -14,8 +14,8 @@
  */
 
 import { promptAction } from '@kit.ArkUI';
-import { BreakpointType, MenuData } from '@ohos/mediaCommon';
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
+import { BreakpointType, MenuData } from 'mediacommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
 import { HeaderConstants } from '../constants/HeaderConstants';
 
 @Component

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { BreakpointConstants, GridConstants, StyleConstants } from '@ohos/constantsCommon';
-import { BreakpointType } from '@ohos/mediaCommon';
+import { BreakpointConstants, GridConstants, StyleConstants } from 'constantscommon';
+import { BreakpointType } from 'mediacommon';
 import { OptionItem, optionList } from '../viewmodel/SongListData';
 import { ContentConstants } from '../constants/ContentConstants';
 

@@ -7,6 +7,6 @@
   "main": "index.ets",
   "version": "1.0.0",
   "dependencies": {
-    "@ohos/constantsCommon": "file:../constantsCommon"
+    "constantscommon": "file:../constantsCommon"
   }
 }

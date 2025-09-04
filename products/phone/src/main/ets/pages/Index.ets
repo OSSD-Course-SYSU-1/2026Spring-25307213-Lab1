@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { BreakpointConstants, RouterUrlConstants, StyleConstants } from '@ohos/constantsCommon';
-import { LivePage } from '@ohos/live';
-import { MusicListPage } from '@ohos/musicList';
-import { MusicCommentPage } from '@ohos/musicComment';
+import { BreakpointConstants, RouterUrlConstants, StyleConstants } from 'constantscommon';
+import { LivePage } from 'live';
+import { MusicListPage } from 'musiclist';
+import { MusicCommentPage } from 'musiccomment';
 import IndexItem from '../viewmodel/IndexItem';
 import IndexViewModel from '../viewmodel/IndexViewModel';
 import { HomeConstants } from '../common/constants/HomeConstants';
@@ -26,6 +26,7 @@ import { HomeConstants } from '../common/constants/HomeConstants';
 struct Index {
   @State indexItemList: IndexItem[] = IndexViewModel.getIndexItemList();
   @StorageLink('pageIndexInfos') pageIndexInfos: NavPathStack = new NavPathStack();
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
 
   @Builder
   PagesMap(name: string, param?: object) {
@@ -127,6 +128,7 @@ struct Index {
           right: $r('app.float.column_padding_right'),
           bottom: $r('app.float.column_padding_top')
         })
+        .margin({ top: this.getUIContext().px2vp(this.topRectHeight) })
       }
       .scrollBar(BarState.Off)
     }

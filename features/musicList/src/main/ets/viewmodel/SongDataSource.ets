@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { SongItem } from '@ohos/mediaCommon';
+import { SongItem } from 'mediacommon';
 
 export class SongDataSource implements IDataSource {
   private dataArray: SongItem[] = [];
