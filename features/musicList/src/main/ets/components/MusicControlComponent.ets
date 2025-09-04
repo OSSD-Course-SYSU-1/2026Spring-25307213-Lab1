@@ -20,8 +20,6 @@ import { common } from '@kit.AbilityKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
 import { BreakpointConstants, StyleConstants } from 'constantscommon';
 import { ColorConversion, Logger, SongItem } from 'mediacommon';
-import { BreakpointConstants, StyleConstants } from 'constantscommon';
-import { ColorConversion, Logger, SongItem } from 'mediacommon';
 import { LyricsComponent } from './LyricsComponent';
 import { MusicInfoComponent } from './MusicInfoComponent';
 import { ControlAreaComponent } from './ControlAreaComponent';
