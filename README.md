@@ -16,6 +16,7 @@
 平板效果图如下：
 
 ![](screenshots/device/tablet.png)
+![](screenshots/device/tablet.png)
 
 智能穿戴效果图如下：
 
