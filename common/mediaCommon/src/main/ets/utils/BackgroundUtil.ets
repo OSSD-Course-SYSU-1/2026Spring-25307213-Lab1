@@ -27,7 +27,7 @@ export class BackgroundUtil {
   public static startContinuousTask(context?: common.UIAbilityContext): void {
     if (!context) {
       Logger.error('this avPlayer: ', `context undefined`);
-      return
+      return;
     }
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [
@@ -55,7 +55,9 @@ export class BackgroundUtil {
         Logger.error('this avPlayer: ',
           `startBackgroundRunning failed. code ${(error as BusinessError).code} message ${(error as BusinessError).message}`);
       }
-    });
+    }).catch((err: BusinessError) => {
+      Logger.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    })
   }
 
   /**

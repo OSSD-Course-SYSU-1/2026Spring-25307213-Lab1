@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { RouterUrlConstants } from '@ohos/constantsCommon';
-import { SongItem } from '@ohos/mediaCommon';
+import { RouterUrlConstants } from 'constantscommon';
+import { SongItem } from 'mediacommon';
 
 const songList: SongItem[] = [
   { id: 1, title: 'Dream It Possible', singer: 'Delacey', mark: $r('app.media.ic_vip'),
@@ -86,7 +86,7 @@ const songList: SongItem[] = [
     label: $r('app.media.ic_avatar17'), src: 'power.wav', index:32, lyric: '' },
   { id: 34, title: '无归', singer: '小安安', mark: $r('app.media.ic_sq'),
     label: $r('app.media.ic_avatar11'), src: 'power.wav', index:33, lyric: '' }
-]
+];
 
 const optionList : OptionItem[] = [
   { image: $r('app.media.ic_collect'), text: $r('app.string.collect') },
@@ -95,7 +95,7 @@ const optionList : OptionItem[] = [
     pageIndexInfos.pushPathByName(RouterUrlConstants.MUSIC_COMMENT, null);
   }},
   { image: $r('app.media.ic_share'), text: $r('app.string.share') }
-]
+];
 
 class OptionItem {
   image: Resource = $r('app.media.ic_collect');
@@ -103,4 +103,4 @@ class OptionItem {
   action?: (pageIndexInfos: NavPathStack) => void;
 }
 
-export { optionList, OptionItem, songList }
+export { optionList, OptionItem, songList };

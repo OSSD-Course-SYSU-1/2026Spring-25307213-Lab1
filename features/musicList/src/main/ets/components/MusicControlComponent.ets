@@ -18,13 +18,15 @@ import { image } from '@kit.ImageKit';
 import { effectKit } from '@kit.ArkGraphics2D';
 import { common } from '@kit.AbilityKit';
 import { BusinessError, Callback } from '@kit.BasicServicesKit';
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { ColorConversion, Logger, SongItem } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { ColorConversion, Logger, SongItem } from 'mediacommon';
 import { LyricsComponent } from './LyricsComponent';
 import { MusicInfoComponent } from './MusicInfoComponent';
 import { ControlAreaComponent } from './ControlAreaComponent';
 import { TopAreaComponent } from './TopAreaComponent';
 import { PlayerConstants } from '../constants/PlayerConstants';
+
+const TAG = 'MusicControlComponent';
 
 @Preview
 @Component
@@ -72,7 +74,12 @@ export struct MusicControlComponent {
 
   aboutToDisappear(): void {
     if (canIUse('SystemCapability.Window.SessionManager')) {
-      display.off('foldDisplayModeChange', this.callback);
+      try {
+        display.off('foldDisplayModeChange', this.callback);
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
+      this.isFoldFull = false;
     }
   }
 
@@ -258,21 +265,21 @@ export struct MusicControlComponent {
               let colorArr = ColorConversion.dealColor(color.red, color.green, color.blue);
               this.imageColor = `rgba(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]}, 1)`;
             }
-          })
+          });
           let headFilter = effectKit.createEffect(pixelMap);
           if (headFilter !== null) {
             headFilter.blur(PlayerConstants.IMAGE_BLUR);
             headFilter.getEffectPixelMap().then((value) => {
               this.imageLabel = value;
-            })
+            });
           }
         })
           .catch((error: BusinessError) => {
-            Logger.error(`${error.code} + ${error.message}`)
-          })
+            Logger.error(`${error.code} + ${error.message}`);
+          });
       })
       .catch((error: BusinessError) => {
-        Logger.error(`${error.code} + ${error.message}`)
-      })
+        Logger.error(`${error.code} + ${error.message}`);
+      });
   }
 }

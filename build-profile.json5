@@ -5,7 +5,8 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compatibleSdkVersion": "5.0.0(12)",
+        "compatibleSdkVersion": "5.1.0(18)",
+        "targetSdkVersion": "5.1.0(18)",
         "runtimeOS": "HarmonyOS"
       }
     ],
@@ -74,6 +75,18 @@
     {
       "name": "constantsCommon",
       "srcPath": "./common/constantsCommon"
+    },
+    {
+      "name": "watch",
+      "srcPath": "./products/watch",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

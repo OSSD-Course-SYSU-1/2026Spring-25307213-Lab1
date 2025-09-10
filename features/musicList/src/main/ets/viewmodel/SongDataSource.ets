@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { SongItem } from '@ohos/mediaCommon';
+import { SongItem } from 'mediacommon';
 
 export class SongDataSource implements IDataSource {
   private dataArray: SongItem[] = [];
@@ -65,24 +65,24 @@ export class SongDataSource implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-    })
+    });
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
-    })
+    });
   }
 }

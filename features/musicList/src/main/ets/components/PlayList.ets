@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +14,8 @@
  * limitations under the License.
  */
 
-import  { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { MediaService, SongItem, BreakpointType } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { MediaService, SongItem, BreakpointType } from 'mediacommon';
 import { SongDataSource } from '../viewmodel/SongDataSource';
 import { ContentConstants } from '../constants/ContentConstants';
 
@@ -23,6 +24,7 @@ export struct PlayList {
   @Link currentBreakpoint: string;
   @StorageLink('songList') songList: SongItem[] = [];
   @StorageLink('isShowPlay') isShowPlay: boolean = false;
+  @StorageLink('bottomRectHeight') bottomRectHeight: number = 0;
 
   @Builder
   PlayAll() {
@@ -100,7 +102,7 @@ export struct PlayList {
         .width($r('app.float.order_icon_size'))
     }
     .onClick(() => {
-      MediaService.getInstance().loadAssent(index)
+      MediaService.getInstance().loadAssent(index);
       this.isShowPlay = true;
     })
     .height($r('app.float.list_item_height'))
@@ -109,19 +111,19 @@ export struct PlayList {
 
   build() {
     Column() {
-      this.PlayAll()
+      this.PlayAll();
       List() {
         LazyForEach(new SongDataSource(this.songList), (item: SongItem, index: number) => {
           ListItem() {
             Column() {
-              this.SongItem(item, index)
+              this.SongItem(item, index);
             }
             .padding({
               left: $r('app.float.list_item_padding'),
               right: $r('app.float.list_item_padding')
             })
           }
-        }, (item: SongItem, index?: number) => JSON.stringify(item) + index)
+        }, (item: SongItem, index?: number) => (item).toString() + index)
       }
       .width(StyleConstants.FULL_WIDTH)
       .backgroundColor(Color.White)
@@ -129,6 +131,7 @@ export struct PlayList {
       .lanes(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ?
         ContentConstants.COL_TWO : ContentConstants.COL_ONE)
       .layoutWeight(1)
+      .cachedCount(2)
       .divider({
         color: $r('app.color.list_divider'),
         strokeWidth: $r('app.float.stroke_width'),
@@ -138,7 +141,7 @@ export struct PlayList {
     }
     .padding({
       top: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ? 0 : $r('app.float.list_area_padding_top'),
-      bottom: $r('app.float.list_area_padding_bottom')
+      bottom: 48 + this.getUIContext().px2vp(this.bottomRectHeight)
     })
   }
 }

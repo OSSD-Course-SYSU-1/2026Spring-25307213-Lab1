@@ -14,7 +14,7 @@
  */
 
 import { Animator, AnimatorResult } from '@kit.ArkUI';
-import { Logger } from '@ohos/mediaCommon';
+import { Logger } from 'mediacommon';
 import { LrcEntry } from './LrcEntry';
 import { angleToRadian } from './LrcUtils';
 import { Rectangle, LyricTopPosition, LyricScrollEffect } from './LyricConst';
@@ -481,7 +481,7 @@ export default struct shiLrcView {
             this.context.fillText(text, this.lrcX, this.lrcY, this.lrcWidth);
           }
           else {
-            this.context.textAlign = 'center'
+            this.context.textAlign = 'center';
             this.context.fillText(text, this.lrcX, this.lrcY, this.lrcWidth);
           }
           break;
@@ -748,15 +748,15 @@ export default struct shiLrcView {
   build() {
     Canvas(this.context)
       .onAreaChange((oldArea: Area, newArea: Area) => {
-        this.viewWidth = Number.parseFloat(newArea.width.toLocaleString());
-        this.viewHeight = Number.parseFloat(newArea.height.toLocaleString());
-        if (oldArea.width.toLocaleString() !== newArea.width.toLocaleString()) {
+        this.viewWidth = Number.parseFloat(newArea.width.toString());
+        this.viewHeight = Number.parseFloat(newArea.height.toString());
+        if (oldArea.width.toString() !== newArea.width.toString()) {
           this.calculate();
           let line = this.findShowLine(this.lyricMilliSecondsTime);
           let offset = this.getOffset(line);
           this.drawContent(offset);
         }
-        if (oldArea.height.toLocaleString() !== newArea.height.toLocaleString()) {
+        if (oldArea.height.toString() !== newArea.height.toString()) {
           this.calculate();
           let line = this.findShowLine(this.lyricMilliSecondsTime);
           let offset = this.getOffset(line);

@@ -14,7 +14,7 @@
  */
 
 import { mediaquery } from '@kit.ArkUI';
-import { BreakpointConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants } from 'constantscommon';
 
 declare interface BreakPointTypeOption<T> {
   sm?: T,
@@ -60,17 +60,17 @@ export class BreakpointSystem {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint(BreakpointConstants.BREAKPOINT_SM);
     }
-  }
+  };
   private isBreakpointMD = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint(BreakpointConstants.BREAKPOINT_MD);
     }
-  }
+  };
   private isBreakpointLG = (mediaQueryResult: mediaquery.MediaQueryResult): void => {
     if (mediaQueryResult.matches) {
       this.updateCurrentBreakpoint(BreakpointConstants.BREAKPOINT_LG);
     }
-  }
+  };
 
   public register(): void {
     this.smListener = uiContext?.getMediaQuery().matchMediaSync(BreakpointConstants.RANGE_SM);

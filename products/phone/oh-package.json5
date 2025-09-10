@@ -7,9 +7,9 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "@ohos/constantsCommon": "file:../../common/constantsCommon",
-    "@ohos/live": "file:../../features/live",
-    "@ohos/musicComment": "file:../../features/musicComment",
-    "@ohos/musicList": "file:../../features/musicList"
+    "constantscommon": "file:../../common/constantsCommon",
+    "live": "file:../../features/live",
+    "musiccomment": "file:../../features/musicComment",
+    "musiclist": "file:../../features/musicList"
   }
 }

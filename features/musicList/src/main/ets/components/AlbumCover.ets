@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
 import { AlbumComponent } from './AlbumComponent';
 
 @Component

@@ -14,7 +14,7 @@
  */
 
 import { util } from '@kit.ArkTS';
-import { Logger } from '@ohos/mediaCommon';
+import { Logger } from 'mediacommon';
 import { LrcEntry, Word } from './LrcEntry';
 
 /**
@@ -33,10 +33,15 @@ const krcWordRegex2 = new RegExp('<(\\d+),(\\d+),(\\d+)>(.*)');
 
 
 export async function getRawStringData(context: Context, rawFilePath: string): Promise<string> {
-  let value = await context.resourceManager.getRawFileContent(rawFilePath);
-  let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true });
-  let stringData = textDecoder.decodeToString(value, { stream: false });
-  return stringData;
+  try {
+    let value = await context.resourceManager.getRawFileContent(rawFilePath);
+    let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true });
+    let stringData = textDecoder.decodeToString(value, { stream: false });
+    return stringData;
+  } catch (error) {
+    Logger.error('Failed to getRawStringData', `${error.code} + ${error.message}`);
+    return ''
+  }
 }
 
 /**
@@ -68,7 +73,7 @@ export function parseLrcLyric(text: string): Array<LrcEntry> {
   if (lrc && lrc.length > 0) {
     lrc.sort((a, b) => {
       return a.lineStartTime - b.lineStartTime;
-    })
+    });
     for (let i = 0; i < lrc.length; i++) {
       if (i === lrc.length - 1) {
         lrc[i].lineDuration = Number.MAX_VALUE;
@@ -125,7 +130,7 @@ export function parseKrcLyric(lyricText: string): LrcEntry[] {
   }
   lyricLines.sort((a, b) => {
     return a.lineStartTime - b.lineStartTime;
-  })
+  });
   return lyricLines;
 }
 

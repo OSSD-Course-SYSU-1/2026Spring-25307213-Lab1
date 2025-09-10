@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { StyleConstants } from '@ohos/constantsCommon';
+import { StyleConstants } from 'constantscommon';
 
 @Component
 export struct HeadComponent {

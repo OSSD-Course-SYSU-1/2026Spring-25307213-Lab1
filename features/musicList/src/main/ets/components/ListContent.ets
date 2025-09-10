@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import { BreakpointConstants, GridConstants, StyleConstants } from '@ohos/constantsCommon';
+import { BreakpointConstants, GridConstants, StyleConstants } from 'constantscommon';
 import { AlbumCover } from './AlbumCover';
 import { PlayList } from './PlayList';
 
 @Component
 export struct Content {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM;
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
 
   build() {
     GridRow({
@@ -35,11 +36,16 @@ export struct Content {
     }) {
       GridCol({ span: { sm: GridConstants.SPAN_TWELVE, md: GridConstants.SPAN_SIX, lg: GridConstants.SPAN_FOUR } }) {
         AlbumCover({ currentBreakpoint: this.currentBreakpoint })
+          .padding({ top: this.getUIContext().px2vp(this.topRectHeight) })
       }
       .backgroundColor($r('app.color.album_background'))
 
       GridCol({ span: { sm: GridConstants.SPAN_TWELVE, md: GridConstants.SPAN_SIX, lg: GridConstants.SPAN_EIGHT } }) {
         PlayList({ currentBreakpoint: this.currentBreakpoint })
+          .padding({
+            top: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ? 0 :
+              this.getUIContext().px2vp(this.topRectHeight)
+          })
       }
       .borderRadius($r('app.float.playlist_border_radius'))
     }

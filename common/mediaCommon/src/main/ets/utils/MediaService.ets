@@ -20,7 +20,7 @@ import { formProvider } from '@kit.FormKit';
 import { formBindingData } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { resourceManager } from '@kit.LocalizationKit';
-import { SongConstants } from '@ohos/constantsCommon';
+import { SongConstants } from 'constantscommon';
 import SongItemBuilder from './SongItemBuilder';
 import { AudioPlayerState, MusicPlayMode } from '../viewmodel/MusicData';
 import { SongItem } from '../viewmodel/SongData';
@@ -46,6 +46,7 @@ export class MediaService {
   private songList: SongItem[] = [];
   private formIds: string[] = [];
   private isCurrent: boolean = true;
+  private isNeedPlay: boolean = true;
 
   private seekCall: (seekDoneTime: number) => void = (seekDoneTime: number) => {
     this.isCurrent = true;
@@ -97,10 +98,11 @@ export class MediaService {
         this.isPrepared = true;
         AppStorage.setOrCreate('totalTime', MediaTools.msToCountdownTime(this.getDuration()));
         AppStorage.setOrCreate('progressMax', this.getDuration());
-        if (this.avPlayer) {
+        if (this.avPlayer && this.isNeedPlay) {
           this.avPlayer.play();
         }
         this.setAVMetadata();
+        this.isNeedPlay = true;
         Logger.info(TAG, 'AVPlayer prepared succeeded.');
         break;
       case 'playing':
@@ -155,6 +157,10 @@ export class MediaService {
     Logger.info(TAG, `on playPrevious , do playPrevious task`);
     this.playPrevious();
   };
+  private volumeChangeCall: (volume: number) => void = (volume: number) => {
+    Logger.info(TAG, `on volumeChangeCall, do volumeChange task`);
+    AppStorage.setOrCreate('volume', volume);
+  };
 
   constructor() {
     let list: SongItem[] | undefined = AppStorage.get('songList');
@@ -182,8 +188,8 @@ export class MediaService {
         this.createSession();
       }
     }) .catch((error: BusinessError) => {
-      Logger.error(TAG, 'this avPlayer: ', `catch error happened,error code is ${error.code}`)
-    })
+      Logger.error(TAG, 'this avPlayer: ', `catch error happened,error code is ${error.code}`);
+    });
   }
 
   private setAVPlayerCallback() {
@@ -196,16 +202,22 @@ export class MediaService {
 
     this.avPlayer.on('timeUpdate', this.updateTimeCall);
 
-    this.avPlayer.on('stateChange', this.stateCall)
+    this.avPlayer.on('stateChange', this.stateCall);
+
+    this.avPlayer.on('volumeChange', this.volumeChangeCall);
   }
 
   async createSession() {
     if (!this.context) {
       return;
     }
-    this.session = await avSession.createAVSession(this.context, 'SESSION_NAME', 'audio');
-    this.session.activate();
-    Logger.info(TAG, `session create done : sessionId : ${this.session.sessionId}`);
+    try {
+      this.session = await avSession.createAVSession(this.context, 'SESSION_NAME', 'audio');
+      Logger.info(TAG, `session create done : sessionId : ${this.session.sessionId}`);
+      this.session.activate();
+    } catch (error) {
+      Logger.error(TAG, `${error.code} + ${error.message}`);
+    }
     this.setAVMetadata();
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       wants: [
@@ -217,12 +229,15 @@ export class MediaService {
       operationType: wantAgent.OperationType.START_ABILITIES,
       requestCode: 0,
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-    }
+    };
     wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
       if (this.session) {
         this.session.setLaunchAbility(agent);
       }
     })
+      .catch((err: BusinessError) => {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      });
     this.setListenerForMesFromController();
   }
 
@@ -230,20 +245,28 @@ export class MediaService {
     if (!this.session) {
       return;
     }
-    this.session.on('play', this.playCall);
-    this.session.on('pause', this.pauseCall);
-    this.session.on('playNext', this.playNextCall);
-    this.session.on('playPrevious', this.playPreviousCall);
+    try {
+      this.session.on('play', this.playCall);
+      this.session.on('pause', this.pauseCall);
+      this.session.on('playNext', this.playNextCall);
+      this.session.on('playPrevious', this.playPreviousCall);
+    } catch (error) {
+      Logger.error(TAG, `${error.code} + ${error.message}`);
+    }
   }
 
   async unregisterSessionListener() {
     if (!this.session) {
       return;
     }
-    this.session.off('play');
-    this.session.off('pause');
-    this.session.off('playNext');
-    this.session.off('playPrevious');
+    try {
+      this.session.off('play');
+      this.session.off('pause');
+      this.session.off('playNext');
+      this.session.off('playPrevious');
+    } catch (error) {
+      Logger.error(TAG, `${error.code} + ${error.message}`);
+    }
   }
 
   async setAVMetadata() {
@@ -278,8 +301,9 @@ export class MediaService {
    * Play music by index.
    *
    * @param musicIndex
+   * @param isNeedPlay
    */
-  async loadAssent(musicIndex: number) {
+  async loadAssent(musicIndex: number, loadOnly?: boolean) {
     if (musicIndex >= this.songList.length) {
       Logger.error(TAG, `current musicIndex ${musicIndex}`);
       return;
@@ -291,6 +315,9 @@ export class MediaService {
       this.songItem = await this.songItemBuilder.build(this.songList[this.musicIndex]);
       let url = this.songItemBuilder.getRealUrl();
       if (url) {
+        if (loadOnly) {
+          this.isNeedPlay = false;
+        }
         let avFileDescriptor: media.AVFileDescriptor = { fd: url.fd, offset: url.offset, length: url.length };
         this.avPlayer.fdSrc = avFileDescriptor;
         Logger.info(TAG, 'loadAsset avPlayer.url:' + this.avPlayer.fdSrc);
@@ -372,7 +399,7 @@ export class MediaService {
     if (this.avPlayer) {
       this.avPlayer.prepare().then(() => {
       }).catch((error: BusinessError) => {
-        Logger.error(TAG, `start error ${JSON.stringify(error)}`)
+        Logger.error(TAG, `start error ${JSON.stringify(error)}`);
         this.state = AudioPlayerState.ERROR;
         this.updateIsPlay(false);
         this.isPrepared = false;
@@ -389,12 +416,16 @@ export class MediaService {
     if (!this.isPrepared) {
       this.start(0);
     } else if (this.avPlayer) {
-      this.avPlayer.play().then(() => {
-        Logger.info(TAG, 'progressTime play() current time:' + this.getCurrentTime());
-        this.seek(this.getCurrentTime());
-        this.updateIsPlay(true);
-        this.state = AudioPlayerState.PLAY;
-      })
+      try {
+        this.avPlayer.play().then(() => {
+          Logger.info(TAG, 'progressTime play() current time:' + this.getCurrentTime());
+          this.seek(this.getCurrentTime());
+          this.updateIsPlay(true);
+          this.state = AudioPlayerState.PLAY;
+        });
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
   }
 
@@ -410,7 +441,9 @@ export class MediaService {
         if (this.context) {
           BackgroundUtil.stopContinuousTask(this.context);
         }
-      });
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'Failed to pause,error message is :' + err.message);
+      })
     }
   }
 
@@ -426,7 +459,11 @@ export class MediaService {
         if (isFromControl) {
           this.playNext();
         } else if (this.avPlayer) {
-          this.avPlayer.play();
+          try {
+            this.avPlayer.play();
+          } catch (error) {
+            Logger.error(TAG, `${error.code} + ${error.message}`);
+          }
         }
         break;
       case MusicPlayMode.ORDER:
@@ -489,11 +526,15 @@ export class MediaService {
   public async stop() {
     Logger.info(TAG, 'stop()');
     if (this.isPrepared && this.avPlayer) {
-      await this.avPlayer.stop();
-      this.updateIsPlay(false);
-      this.state = AudioPlayerState.PAUSE;
-      if (this.context) {
-        BackgroundUtil.stopContinuousTask(this.context);
+      try {
+        await this.avPlayer.stop();
+        this.updateIsPlay(false);
+        this.state = AudioPlayerState.PAUSE;
+        if (this.context) {
+          BackgroundUtil.stopContinuousTask(this.context);
+        }
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
       }
     }
   }
@@ -502,7 +543,11 @@ export class MediaService {
     Logger.info(TAG, 'reset()');
     await this.songItemBuilder.release();
     if (this.avPlayer) {
-      await this.avPlayer.reset();
+      try {
+        await this.avPlayer.reset();
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
     this.isPrepared = false;
   }
@@ -512,20 +557,24 @@ export class MediaService {
    */
   public release() {
     if (this.avPlayer && this.session && this.context) {
-      this.updateIsPlay(false);
-      this.stop();
-      this.reset();
-      this.avPlayer.release();
-      this.state = AudioPlayerState.IDLE;
-      BackgroundUtil.stopContinuousTask(this.context);
-      this.unregisterSessionListener();
-      this.session.destroy((err: BusinessError) => {
-        if (err) {
-          Logger.error(TAG, `Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
-        } else {
-          Logger.info(TAG, `Destroy : SUCCESS `);
-        }
-      });
+      try {
+        this.updateIsPlay(false);
+        this.stop();
+        this.reset();
+        this.avPlayer.release();
+        this.state = AudioPlayerState.IDLE;
+        BackgroundUtil.stopContinuousTask(this.context);
+        this.unregisterSessionListener();
+        this.session.destroy((err: BusinessError) => {
+          if (err) {
+            Logger.error(TAG, `Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+          } else {
+            Logger.info(TAG, `Destroy : SUCCESS `);
+          }
+        });
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
   }
 
@@ -589,7 +638,7 @@ export class MediaService {
         musicCover: this.songList[this.musicIndex].label,
         musicSinger: this.songList[this.musicIndex].singer,
         cardSongList: cardSongList
-      }
+      };
       let formInfo = formBindingData.createFormBindingData(formData);
 
       this.formIds.forEach(formId => {
@@ -600,8 +649,8 @@ export class MediaService {
           if (error.code === SongConstants.ID_NO_EXIT && this.context) {
             PreferencesUtil.getInstance().removeFormId(this.context, formId);
           }
-        })
-      })
+        });
+      });
     } catch (error) {
       Logger.error(TAG, `updateCardData err: ${(error as BusinessError).code}`);
     }
@@ -617,10 +666,14 @@ export class MediaService {
     }
     let formData: Record<string, boolean> = {
       'isPlay': false
-    }
+    };
     let formInfo = formBindingData.createFormBindingData(formData);
     for (let index = 0; index < this.formIds.length; index++) {
-      await formProvider.updateForm(this.formIds[index], formInfo);
+      try {
+        await formProvider.updateForm(this.formIds[index], formInfo);
+      } catch (error) {
+        Logger.error(TAG, `${error.code} + ${error.message}`);
+      }
     }
   }
 }

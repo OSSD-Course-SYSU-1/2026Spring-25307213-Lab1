@@ -16,8 +16,8 @@
 import { curves, window } from '@kit.ArkUI';
 import { displaySync } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { BreakpointConstants, StyleConstants } from '@ohos/constantsCommon';
-import { BreakpointType, Logger, MediaService, SongItem } from '@ohos/mediaCommon';
+import { BreakpointConstants, StyleConstants } from 'constantscommon';
+import { BreakpointType, Logger, MediaService, SongItem } from 'mediacommon';
 import { PlayerConstants } from '../constants/PlayerConstants';
 import { MusicControlComponent } from './MusicControlComponent';
 import { common } from '@kit.AbilityKit';
@@ -35,15 +35,17 @@ export struct Player {
   @StorageLink('isShowPlay') isShowPlay: boolean = false;
   @State componentHeight: number = 0;
   @StorageLink('deviceHeight') deviceHeight: number = 0;
+  @StorageLink('bottomRectHeight') bottomRectHeight: number = 0;
   private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Vertical });
   private backDisplaySyncSlow: displaySync.DisplaySync | undefined = undefined;
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private drawFrame: (value: displaySync.IntervalInfo) => void = (value: displaySync.IntervalInfo) => {
-    if (this.imageRotate >= 360 ) {
+    if (this.imageRotate >= 360) {
       this.imageRotate = 0;
     }
     this.imageRotate += 1;
   };
+
   animationFun() {
     if (this.isPlay) {
       this.backDisplaySyncSlow?.start();
@@ -53,7 +55,7 @@ export struct Player {
   }
 
   aboutToAppear() {
-    let range : ExpectedFrameRateRange = {
+    let range: ExpectedFrameRateRange = {
       expected: 30,
       min: 0,
       max: 30
@@ -155,12 +157,12 @@ export struct Player {
       .justifyContent(FlexAlign.End)
     }
     .width(StyleConstants.FULL_WIDTH)
-    .height($r('app.float.player_area_height'))
     .backgroundColor($r('app.color.player_background'))
     .bindContentCover($$this.isShowPlay, this.musicPlayBuilder(), ModalTransition.DEFAULT)
     .padding({
       left: $r('app.float.player_padding'),
-      right: $r('app.float.player_padding')
+      right: $r('app.float.player_padding'),
+      bottom: this.getUIContext().px2vp(this.bottomRectHeight)
     })
     .position({
       x: 0,
@@ -168,7 +170,7 @@ export struct Player {
     })
     .translate({
       x: 0,
-      y: StyleConstants.TRANSLATE_PLAYER_Y
+      y: -(48 + this.getUIContext().px2vp(this.bottomRectHeight))
     })
     .gesture(
       PanGesture(this.panOption)
@@ -178,6 +180,7 @@ export struct Player {
           }
         })
     )
+    .height(48 + this.getUIContext().px2vp(this.bottomRectHeight))
   }
 
   @Builder
@@ -199,32 +202,24 @@ export struct Player {
         let bottomArea = windowStage.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
         this.bottomArea = this.getUIContext().px2vp(bottomArea.bottomRect.height);
         Logger.info('bottomArea ' + this.bottomArea)
-        if (this.topArea > 0) {
-          windowStage.setWindowLayoutFullScreen(true);
-        }
         let sysBarProps: window.SystemBarProperties = {
           statusBarContentColor: '#FFFFFF'
         };
         windowStage.setWindowSystemBarProperties(sysBarProps);
       }).catch((error: BusinessError) => {
-        Logger.error(`${error.code} + ${error.message}`)
+        Logger.error(`${error.code} + ${error.message}`);
       });
     })
     .onDisAppear(() => {
       this.componentHeight = 0;
       this.isShowPlay = false;
       window.getLastWindow(this.context).then((windowStage: window.Window) => {
-        let area = windowStage.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
-        let topHeight = this.getUIContext().px2vp(area.topRect.height);
-        if (topHeight > 0) {
-          windowStage.setWindowLayoutFullScreen(false);
-        }
         let sysBarProps: window.SystemBarProperties = {
           statusBarContentColor: '#000000'
         };
         windowStage.setWindowSystemBarProperties(sysBarProps);
       }).catch((error: BusinessError) => {
-        Logger.error(`${error.code} + ${error.message}`)
+        Logger.error(`${error.code} + ${error.message}`);
       });
     })
     .gesture(
