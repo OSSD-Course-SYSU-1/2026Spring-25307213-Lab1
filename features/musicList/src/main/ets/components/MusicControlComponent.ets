@@ -246,7 +246,7 @@ export struct MusicControlComponent {
     if (!this.context) {
       return;
     }
-    this.context.resourceManager.getMediaContent(this.songList[this.selectIndex].label)
+    this.context.resourceManager.getMediaContent(this.songList[this.selectIndex].id)
       .then((value: Uint8Array) => {
         let buffer = value.buffer as ArrayBuffer;
         image.createImageSource(buffer).createPixelMap().then((pixelMap) => {
