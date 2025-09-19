@@ -37,6 +37,7 @@ export struct MusicControlComponent {
   @StorageLink('imageColor') imageColor: string = 'rgba(0, 0, 2, 1.00)';
   @StorageLink('topArea') topArea: number = 0;
   @StorageLink('bottomArea') bottomArea: number = 0;
+  @StorageLink('currentHeightBreakpoint') currentHeightBreakpoint: number = 0;
   @State imageLabel: PixelMap | Resource = this.songList[this.selectIndex].label;
   @State isShowControl: boolean = true;
   @State isShowControlLg: boolean = false;
@@ -97,7 +98,8 @@ export struct MusicControlComponent {
         .objectFit(ImageFit.Cover)
         .opacity(0.5)
       Row() {
-        if (this.isFoldFull) {
+        if ((this.currentBreakpoint === BreakpointConstants.BREAKPOINT_MD &&
+          this.currentHeightBreakpoint === HeightBreakpoint.HEIGHT_MD)) {
           Column() {
             TopAreaComponent({ isShowPlay: this.isShowPlay })
               .margin({
