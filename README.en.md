@@ -49,7 +49,7 @@ The figure shows the effect on the wearable.
 │  │  └──viewmodel
 │  └──musicList/src/main/resources            // Resource file directory
 └──products                                   // Product Customization Layer
-   ├──phone/src/main/ets                      // Supports smartphones, foldable screens, tablets, and PCs/2in1 devices
+   ├──phone/src/main/ets                      // Supports Huawei phones, tablets
    │  ├──common
    │  ├──entryability
    │  ├──pages
