@@ -79,7 +79,7 @@ N/A
 
 ### Constraints
 
-1. The sample is only supported on Bar phones, Bi-fold phone, Tablet and Wearable with standard systems.
+1. The sample is only supported on Bar phones, Bi-fold phone (Mate X series), Tablet and Wearable with standard systems.
 2. HarmonyOS: HarmonyOS 5.1.0 Release or later.
 3. DevEco Studio: DevEco Studio 6.0.0 Release or later.
 4. HarmonyOS SDK: HarmonyOS 6.0.0 Release SDK or later.
