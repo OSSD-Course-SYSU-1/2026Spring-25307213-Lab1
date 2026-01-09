@@ -49,14 +49,14 @@ The figure shows the effect on the Wearable.
 │  │  └──viewmodel
 │  └──musicList/src/main/resources            // Resource file directory
 └──products                                   // Product Customization Layer
-   ├──phone/src/main/ets                      // Supports Huawei phones, tablets
+   ├──phone/src/main/ets                      // Supports Bar phone, Bi-fold phone, Tablet
    │  ├──common
    │  ├──entryability
    │  ├──pages
    │  ├──phonebackupextability
    │  └──viewmodel
    ├──phone/src/main/resources                // Resource file directory
-   ├──watch/src/main/ets                      // Support for smart wearables
+   ├──watch/src/main/ets                      // Support for Wearables
    │  ├──constants                      
    │  ├──pages
    │  ├──view

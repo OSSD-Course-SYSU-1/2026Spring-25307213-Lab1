@@ -48,7 +48,7 @@
 │  │  └──viewmodel
 │  └──musicList/src/main/resources            // 资源文件目录
 └──products                                   // 产品定制层
-   ├──phone/src/main/ets                      // 支持华为手机、平板
+   ├──phone/src/main/ets                      // 支持直板机、双折叠、平板
    │  ├──common
    │  ├──entryability
    │  ├──pages
