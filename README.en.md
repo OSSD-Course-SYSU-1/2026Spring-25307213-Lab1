@@ -5,19 +5,19 @@
 This codelab implements music album pages based on the adaptive layout and responsive layout, achieving one-time development for multi-device deployment.
 
 ## Effect Preview
-The figure shows the effect on the mobile phone.
+The figure shows the effect on the Bar phone.
 
 ![](screenshots/device/phone.en.png)
 
-The figure shows the effect on the foldable phone.
+The figure shows the effect on the Bi-fold phone.
 
 ![](screenshots/device/foldable.en.png)
 
-The figure shows the effect on the tablet.
+The figure shows the effect on the Tablet.
 
 ![](screenshots/device/tablet.en.png)
 
-The figure shows the effect on the wearable.
+The figure shows the effect on the Wearable.
 
 <img src="./screenshots/device/wearable.png" width="320">
 
@@ -67,7 +67,7 @@ The figure shows the effect on the wearable.
 
 ## How to Use
 
-1. Install and open an app on a mobile phone, foldable phone, or tablet. The responsive layout and adaptive layout are used to display different effects on the app pages over different devices.
+1. Install and open an app on a Bar phone, Bi-fold phone, Tablet or Wearable. The responsive layout and adaptive layout are used to display different effects on the app pages over different devices.
 2. Touch the Play/Pause, Previous, or Next icon on the screen to control music playback.
 3. Tap the blank area in the playback control area or a song in the list to go to the playback screen.
 4. Tap the comment button on the page to go to the corresponding comment page.
@@ -79,7 +79,7 @@ N/A
 
 ### Constraints
 
-1. The sample is only supported on Huawei phones, tablets and smart wearables with standard systems.
+1. The sample is only supported on Bar phones, Bi-fold phone, Tablet and Wearable with standard systems.
 2. HarmonyOS: HarmonyOS 5.1.0 Release or later.
 3. DevEco Studio: DevEco Studio 6.0.0 Release or later.
 4. HarmonyOS SDK: HarmonyOS 6.0.0 Release SDK or later.
