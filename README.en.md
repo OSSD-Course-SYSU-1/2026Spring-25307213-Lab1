@@ -66,12 +66,14 @@ The figure shows the effect on the Wearable.
 ```
 
 ## How to Use
+1. According to the selected connected device, choose "watch" for smart wearables and "phone" for other devices.
 
-1. Install and open an app on a Bar phone, Bi-fold phone, Tablet or Wearable. The responsive layout and adaptive layout are used to display different effects on the app pages over different devices.
-2. Touch the Play/Pause, Previous, or Next icon on the screen to control music playback.
-3. Tap the blank area in the playback control area or a song in the list to go to the playback screen.
-4. Tap the comment button on the page to go to the corresponding comment page.
-5. Other buttons do not have actual tap events or functions.
+    ![img](./screenshots/device/img.png)
+2. Install and open an app on a Bar phone, Bi-fold phone, Tablet or Wearable. The responsive layout and adaptive layout are used to display different effects on the app pages over different devices.
+3. Touch the Play/Pause, Previous, or Next icon on the screen to control music playback.
+4. Tap the blank area in the playback control area or a song in the list to go to the playback screen.
+5. Tap the comment button on the page to go to the corresponding comment page.
+6. Other buttons do not have actual tap events or functions.
 
 ### Permissions
 
