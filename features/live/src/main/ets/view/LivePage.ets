@@ -20,11 +20,12 @@ import { LiveConstants} from '../constants/LiveConstants';
 @Component
 export struct LivePage {
   @StorageLink('topRectHeight') topRectHeight: number = 0;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = LiveConstants.CURRENT_BREAKPOINT;
 
   build() {
     Column() {
       Header()
-      LiveList()
+      LiveList(this.currentBreakpoint)
     }
     .width(LiveConstants.FULL_WIDTH_PERCENT)
     .height(LiveConstants.FULL_HEIGHT_PERCENT)
