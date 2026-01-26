@@ -744,7 +744,10 @@ export default struct shiLrcView {
     }
     return this.mCurrentLine;
   }
-
+aboutToAppear(): void {
+  this.calculate();
+  this.onTimeUpdated();
+}
   build() {
     Canvas(this.context)
       .onAreaChange((oldArea: Area, newArea: Area) => {

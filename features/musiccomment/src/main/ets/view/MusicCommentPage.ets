@@ -95,13 +95,15 @@ export struct MusicCommentPage {
                 this.currentBp === BreakpointConstants.BREAKPOINT_MD) {
                 if (index && index < CommonConstants.LIST_COUNT) {
                   ListItem() {
-                    ListItemComponent({ item: comment })
-                      .margin({
-                        left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-                          0 : $r('app.float.margin_left_list'),
-                        right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-                          0 : $r('app.float.margin_right_list')
-                      })
+                    Row(){
+                      ListItemComponent(comment)
+                    }
+                    .margin({
+                      left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
+                        0 : $r('app.float.margin_left_list'),
+                      right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
+                        0 : $r('app.float.margin_right_list')
+                    })
                   }
                   .width(StyleConstants.FULL_WIDTH)
                   .padding({
@@ -110,13 +112,15 @@ export struct MusicCommentPage {
                 }
               } else {
                 ListItem() {
-                  ListItemComponent({ item: comment })
-                    .margin({
-                      left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-                        0 : $r('app.float.margin_left_list'),
-                      right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-                        0 : $r('app.float.margin_right_list')
-                    })
+                  Row(){
+                    ListItemComponent(comment)
+                  }
+                  .margin({
+                    left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
+                      0 : $r('app.float.margin_left_list'),
+                    right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
+                      0 : $r('app.float.margin_right_list')
+                  })
                 }
                 .width(StyleConstants.FULL_WIDTH)
                 .padding({
@@ -147,13 +151,15 @@ export struct MusicCommentPage {
           List() {
             ForEach(this.newComment, (comment: Comment, index: number) => {
               ListItem() {
-                ListItemComponent({ item: comment })
-                  .margin({
-                    left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-                      0 : $r('app.float.margin_left_list'),
-                    right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
-                      0 : $r('app.float.margin_right_list')
-                  })
+                Row(){
+                  ListItemComponent(comment)
+                }
+                .margin({
+                  left: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
+                    0 : $r('app.float.margin_left_list'),
+                  right: this.currentBp === BreakpointConstants.BREAKPOINT_SM ?
+                    0 : $r('app.float.margin_right_list')
+                })
               }
               .width(StyleConstants.FULL_WIDTH)
               .padding({
