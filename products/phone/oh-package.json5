@@ -7,7 +7,7 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "constantscommon": "file:../../common/constantscommon",
+    "constantscommon": "file:../../commons/constantscommon",
     "live": "file:../../features/live",
     "musiccomment": "file:../../features/musiccomment",
     "musiclist": "file:../../features/musiclist"

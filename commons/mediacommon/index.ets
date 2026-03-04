@@ -13,8 +13,11 @@
  * limitations under the License.
  */
 
-export { Content } from './src/main/ets/components/ListContent';
-export { Header } from './src/main/ets/components/Header';
-export { Player } from './src/main/ets/components/Player';
-export { MusicListPage } from './src/main/ets/view/MusicListPage';
-export {songList} from '../musiclist/src/main/ets/viewmodel/SongListData';
+export { BreakpointSystem, BreakpointType } from './src/main/ets/utils/BreakpointSystem';
+export { MenuData } from './src/main/ets/viewmodel/MenuData';
+export { MediaService } from './src/main/ets/utils/MediaService';
+export { SongItem } from './src/main/ets/viewmodel/SongData';
+export { MusicPlayMode } from './src/main/ets/viewmodel/MusicData';
+export { PreferencesUtil } from './src/main/ets/utils/PreferencesUtil';
+export { Logger } from './src/main/ets/utils/Logger';
+export { ColorConversion } from './src/main/ets/utils/ColorConversion';
