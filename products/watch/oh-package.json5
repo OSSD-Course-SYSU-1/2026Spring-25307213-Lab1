@@ -7,10 +7,10 @@
   "license": "",
   "dependencies": {
     "musiclist": "file:../../features/musiclist",
-    "constantscommon": "file:../../common/constantscommon",
+    "constantscommon": "file:../../commons/constantscommon",
     "live": "file:../../features/live",
     "musiccomment": "file:../../features/musiccomment",
-    "mediacommon": "file:../../common/mediacommon"
+    "mediacommon": "file:../../commons/mediacommon"
   }
 }
 
