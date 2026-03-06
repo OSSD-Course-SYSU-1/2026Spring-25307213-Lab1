@@ -23,7 +23,7 @@
 
 ## 工程目录
 ```
-├──commons                                    // 公共能力层
+├──common                                     // 公共能力层
 │  ├──constantsCommon/src/main/ets            // 公共常量
 │  │  └──constants
 │  └──mediaCommon/src/main/ets                // 公共媒体方法

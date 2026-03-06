@@ -70,11 +70,11 @@
     },
     {
       "name": "mediacommon",
-      "srcPath": "./commons/mediacommon"
+      "srcPath": "./common/mediacommon"
     },
     {
       "name": "constantscommon",
-      "srcPath": "./commons/constantscommon"
+      "srcPath": "./common/constantscommon"
     },
     {
       "name": "watch",
