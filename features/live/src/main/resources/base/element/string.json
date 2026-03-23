@@ -22,6 +22,10 @@
     {
       "name": "live_three_introduction",
       "value": "Zoologists take you through the third world of insects."
+    },
+    {
+      "name": "shared_desc",
+      "value": "live"
     }
   ]
 }
