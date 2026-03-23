@@ -69,7 +69,7 @@ function LiveItem(item: LiveStream, index: number, currentBreakpoint: string) {
       Column() {
         Row() {
           Text(item.title)
-            .fontColor($r('app.color.white'))
+            .fontColor($r('app.color.live_white'))
             .fontWeight(LiveConstants.LIVE_TITLE_FONT_WEIGHT)
             .fontFamily(LiveConstants.LIVE_ITEM_TITLE_FONT_FAMILY)
             .fontSize($r('app.float.live_item_title_font_size'))

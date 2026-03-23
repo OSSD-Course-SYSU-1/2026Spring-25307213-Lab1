@@ -1,14 +1,6 @@
 {
   "string": [
     {
-      "name": "shared_desc",
-      "value": "描述"
-    },
-    {
-      "name": "live_title",
-      "value": "蒲公英直播"
-    },
-    {
       "name": "live_one",
       "value": "醉美雪山"
     },

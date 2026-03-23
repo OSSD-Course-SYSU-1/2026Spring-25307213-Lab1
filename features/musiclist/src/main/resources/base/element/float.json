@@ -205,10 +205,6 @@
       "value": "150vp"
     },
     {
-      "name": "stroke_width",
-      "value": "0.5vp"
-    },
-    {
       "name": "header_font_sm",
       "value": "18fp"
     },

@@ -1,10 +1,6 @@
 {
   "string": [
     {
-      "name": "shared_desc",
-      "value": "shared_desc"
-    },
-    {
       "name": "collection_num",
       "value": "12.5万"
     },
@@ -47,18 +43,6 @@
     {
       "name": "singer",
       "value": "小碗你好"
-    },
-    {
-      "name": "module_desc",
-      "value": "模块描述"
-    },
-    {
-      "name": "EntryAbility_desc",
-      "value": "description"
-    },
-    {
-      "name": "EntryAbility_label",
-      "value": "label"
     },
     {
       "name": "EntryFormAbility_desc",

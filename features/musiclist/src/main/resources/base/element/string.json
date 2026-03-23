@@ -1,10 +1,6 @@
 {
   "string": [
     {
-      "name": "shared_desc",
-      "value": "shared_desc"
-    },
-    {
       "name": "collection_num",
       "value": "125000"
     },
@@ -47,18 +43,6 @@
     {
       "name": "singer",
       "value": "Hello xiao wan"
-    },
-    {
-      "name": "module_desc",
-      "value": "module description"
-    },
-    {
-      "name": "EntryAbility_desc",
-      "value": "description"
-    },
-    {
-      "name": "EntryAbility_label",
-      "value": "label"
     },
     {
       "name": "EntryFormAbility_desc",
