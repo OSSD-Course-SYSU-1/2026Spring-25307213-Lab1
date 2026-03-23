@@ -51,6 +51,10 @@
     {
       "name": "EntryFormAbility_label",
       "value": "form_label"
+    },
+    {
+      "name": "list_shared_desc",
+      "value": "list"
     }
   ]
 }

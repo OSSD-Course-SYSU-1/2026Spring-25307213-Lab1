@@ -2,7 +2,7 @@
   "module": {
     "name": "musiclist",
     "type": "har",
-    "description": "$string:shared_desc",
+    "description": "$string:list_shared_desc",
     "deviceTypes": [
       "phone",
       "tablet"
