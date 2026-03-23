@@ -24,7 +24,7 @@ The figure shows the effect on the Wearable.
 
 ## Engineering catalogue
 ```
-├──commons                                    // Public Competency Layer
+├──common                                    // Public Competency Layer
 │  ├──constantsCommon/src/main/ets            // Public Constants
 │  │  └──constants
 │  └──mediaCommon/src/main/ets                // Public media approach
