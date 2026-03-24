@@ -627,6 +627,10 @@
     {
       "name": "cover_radius_label",
       "value": "8vp"
+    },
+    {
+      "name": "list_stroke_width",
+      "value": "0.5vp"
     }
   ]
 }

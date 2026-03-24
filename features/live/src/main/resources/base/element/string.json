@@ -26,6 +26,10 @@
     {
       "name": "live_shared_desc",
       "value": "live"
+    },
+    {
+      "name": "live_title_module",
+      "value": "Dandelion Live"
     }
   ]
 }

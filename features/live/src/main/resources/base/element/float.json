@@ -115,6 +115,10 @@
     {
       "name": "scroll_margin_bottom",
       "value": "56vp"
+    },
+    {
+      "name": "live_font_size",
+      "value": "28fp"
     }
   ]
 }

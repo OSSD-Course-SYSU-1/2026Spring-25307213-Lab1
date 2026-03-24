@@ -133,8 +133,8 @@ export struct PlayList {
       .layoutWeight(1)
       .cachedCount(2)
       .divider({
-        color: $r('app.color.list_divider'),
-        strokeWidth: $r('app.float.stroke_width'),
+        color: $r('app.color.list_divider_color'),
+        strokeWidth: $r('app.float.list_stroke_width'),
         startMargin: $r('app.float.list_item_padding'),
         endMargin: $r('app.float.list_item_padding')
       })
