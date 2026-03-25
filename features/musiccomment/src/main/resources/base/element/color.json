@@ -1,10 +1,6 @@
 {
   "color": [
     {
-      "name": "white",
-      "value": "#FFFFFF"
-    },
-    {
       "name": "comment_title_color",
       "value": "#e6000000"
     },

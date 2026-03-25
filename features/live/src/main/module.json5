@@ -2,7 +2,7 @@
   "module": {
     "name": "live",
     "type": "har",
-    "description": "$string:shared_desc",
+    "description": "$string:live_shared_desc",
     "deviceTypes": [
       "phone",
       "tablet"

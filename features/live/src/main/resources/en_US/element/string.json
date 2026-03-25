@@ -1,14 +1,6 @@
 {
   "string": [
     {
-      "name": "shared_desc",
-      "value": "description"
-    },
-    {
-      "name": "live_title",
-      "value": "Dandelion Live"
-    },
-    {
       "name": "live_one",
       "value": "Drunk beauty snow mountain"
     },
@@ -30,6 +22,14 @@
     {
       "name": "live_three_introduction",
       "value": "Zoologists take you through the third world of insects."
+    },
+    {
+      "name": "live_shared_desc",
+      "value": "live"
+    },
+    {
+      "name": "live_title_module",
+      "value": "Dandelion Live"
     }
   ]
 }

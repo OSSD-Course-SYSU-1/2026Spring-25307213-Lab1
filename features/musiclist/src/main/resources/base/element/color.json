@@ -25,10 +25,6 @@
       "value": "#F6F9FC"
     },
     {
-      "name": "start_window_background",
-      "value": "#FFFFFF"
-    },
-    {
       "name": "title_font",
       "value": "#E5FFFFFF"
     },
@@ -41,11 +37,7 @@
       "value": "#F6F9FC"
     },
     {
-      "name": "list_divider",
-      "value": "#1A182431"
-    },
-    {
-      "name": "text_color",
+      "name": "musiclist_text_color",
       "value": "#376668"
     },
     {
@@ -87,6 +79,10 @@
     {
       "name": "shadow_color",
       "value": "#66000000"
+    },
+    {
+      "name": "list_divider_color",
+      "value": "#1a182431"
     }
   ]
 }

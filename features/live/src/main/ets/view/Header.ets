@@ -28,8 +28,8 @@ export struct Header {
         .onClick(() => {
           this.pageIndexInfos.pop();
         })
-      Text($r('app.string.live_title'))
-        .fontSize($r('app.float.title_font_size'))
+      Text($r('app.string.live_title_module'))
+        .fontSize($r('app.float.live_font_size'))
         .fontFamily(LiveConstants.LIVE_TITLE_FONT_FAMILY)
         .fontWeight(LiveConstants.TITLE_FONT_WEIGHT)
         .fontColor($r('app.color.live_title_color'))

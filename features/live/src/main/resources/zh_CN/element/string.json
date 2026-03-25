@@ -1,14 +1,6 @@
 {
   "string": [
     {
-      "name": "shared_desc",
-      "value": "描述"
-    },
-    {
-      "name": "live_title",
-      "value": "蒲公英直播"
-    },
-    {
       "name": "live_one",
       "value": "醉美雪山"
     },
@@ -30,6 +22,14 @@
     {
       "name": "live_three_introduction",
       "value": "动物学家带你了解昆虫的第三世界。"
+    },
+    {
+      "name": "live_shared_desc",
+      "value": "live"
+    },
+    {
+      "name": "live_title_module",
+      "value": "蒲公英直播"
     }
   ]
 }

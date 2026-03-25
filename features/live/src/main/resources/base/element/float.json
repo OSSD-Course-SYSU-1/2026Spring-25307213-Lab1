@@ -13,10 +13,6 @@
       "value": "24vp"
     },
     {
-      "name": "title_font_size",
-      "value": "20fp"
-    },
-    {
       "name": "title_left_margin",
       "value": "16vp"
     },
@@ -119,6 +115,10 @@
     {
       "name": "scroll_margin_bottom",
       "value": "56vp"
+    },
+    {
+      "name": "live_font_size",
+      "value": "28fp"
     }
   ]
 }

@@ -1,10 +1,6 @@
 {
   "string": [
     {
-      "name": "shared_desc",
-      "value": "description"
-    },
-    {
       "name": "comment_title",
       "value": "评论"
     },
@@ -15,6 +11,10 @@
     {
       "name": "new_comment",
       "value": "最新评论"
+    },
+    {
+      "name": "comment_shared_desc",
+      "value": "music comment"
     }
   ]
 }

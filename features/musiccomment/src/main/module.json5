@@ -2,10 +2,15 @@
   "module": {
     "name": "musiccomment",
     "type": "har",
-    "description": "$string:shared_desc",
+    "description": "$string:comment_shared_desc",
     "deviceTypes": [
       "phone",
       "tablet"
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+      }
     ]
   }
 }
