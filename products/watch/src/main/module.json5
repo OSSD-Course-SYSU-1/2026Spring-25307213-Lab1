@@ -5,7 +5,7 @@
     "description": "$string:module_desc",
     "mainElement": "WatchAbility",
     "deviceTypes": [
-      "wearable",
+      "wearable"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -44,7 +44,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ],
     "requestPermissions": [
